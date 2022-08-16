@@ -1,0 +1,383 @@
+{{ 'section-partners.css' | asset_url | stylesheet_tag }}
+
+<partenrs-list class="partners bc-{{settings.section_style}}-bt">
+  <div class="page-width page-width-{{settings.section_style}}">
+    <div class="partners-heading small-hide bc-{{settings.section_style}}-bt">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.title != blank -%}
+        <h2 class="partners__title partners__title-{{ block.id }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index }}">
+          {{ block.settings.title }}
+        </h2>
+        {%- endif -%}
+        {%- render 'style', sufix: 'partners__title', id: block.id, style: block.settings -%}
+      {%- endfor -%}
+    </div>
+    <ul class="partners-list bc-scroll-hide bc-{{settings.section_style}}-bt">
+      {%- for block in section.blocks -%}
+      <li class="partners-list__item">
+        <div class="partners-list__item-link" data-index="{{ forloop.index }}">
+          {%- if block.settings.image != blank -%}
+            {%- if forloop.first -%}
+              {%- render 'resimg', image: block.settings.image, classimg: 'partners-list__item-img active' -%}
+            {%- else -%}
+              {%- render 'resimg', image: block.settings.image, classimg: 'partners-list__item-img' -%}
+            {%- endif -%}
+          {%- else -%}
+            {%- if forloop.first -%}
+            <div class="media py-bg-c-light" style="padding-bottom: 40%;">
+               {{ 'image' | placeholder_svg_tag: 'placeholder-svg partners-list__item-img active' }}
+            </div>             
+            {%- else -%}
+              <div class="media py-bg-c-light" style="padding-bottom: 40%;">
+               {{ 'image' | placeholder_svg_tag: 'placeholder-svg partners-list__item-img' }}
+            </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </li>
+      {%- endfor -%}
+    </ul>
+    <div class="center bc-partner-{{ settings.section_style }}-style">
+      {%- if section.settings.button_label != blank -%}
+      <a id="bc__button-{{ section.id }}" class="button"{% if section.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ section.settings.button_link }}"{% endif %}>
+        {{ section.settings.button_label | escape }}
+      </a>
+      {%- render 'style', sufix: '#bc__button', id: section.id, style: section.settings -%}
+      {%- endif-%}
+    </div>
+  </div>
+</partenrs-list>
+
+<script type="text/javascript">
+
+  class partenrsList extends HTMLElement {
+    
+    constructor(){
+      super();
+      this.partenrsImages = this.querySelectorAll('.partners-list__item-link');
+      this.partenrsImages.length && this.partenrsImages.forEach(image => {
+        image.addEventListener('click', this.buttonHandle.bind(this));
+      });
+    };
+
+    buttonHandle(event){
+      if(!event) return;
+      let el    = event.target;
+      let index = el.getAttribute('data-index');
+      let img   = el.querySelector('.partners-list__item-img');
+
+      document.querySelector('.partners__title.active').classList.remove('active');
+      document.querySelector('.partners-list__item-img.active').classList.remove('active');
+      document.querySelector('.partners__title[data-index="' + index + '"]').classList.add('active');
+      img.classList.add('active');
+    }
+
+  }
+
+  customElements.define('partenrs-list', partenrsList);
+
+</script>
+
+{% schema %}
+{
+  "name": "Partners",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Button label",
+      "label": "t:sections.multicolumn.settings.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.multicolumn.settings.button_link.label"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+      "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "border Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-light)"
+    },
+    {
+      "type": "text",
+      "id": "size",
+      "label": "Font Size"
+    },
+    {
+      "type": "text",
+      "id": "weight",
+      "label": "Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "width",
+      "label": "Width"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "select",
+      "id": "m_bg",
+      "label": "Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+      "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "m_border",
+      "label": "border Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "m_color",
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-light)"
+    },
+    {
+      "type": "text",
+      "id": "m_size",
+      "label": "Font Size"
+    },
+    {
+      "type": "text",
+      "id": "m_weight",
+      "label": "Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "m_width",
+      "label": "Width"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "t:sections.multicolumn.blocks.column.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Settings"
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Font Size"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Settings"
+        },
+        {
+          "type": "select",
+          "id": "m_color",
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "text",
+          "id": "m_size",
+          "label": "Font Size"
+        },
+        {
+          "type": "text",
+          "id": "m_weight",
+          "label": "Font Weight"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

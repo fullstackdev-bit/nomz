@@ -1,0 +1,342 @@
+.page.our-story #MainContent .shopify-section .middle-section p, .page.our-story #MainContent .shopify-section .grant-section p{
+  font-size: 18px!important;
+}
+.page.our-story #MainContent .shopify-section .announcement-bar .announcement-bar-message {
+  font-size: unset;
+}
+
+.announcement-bar__message {
+  font-size: 15px;
+}
+.top-section{
+  padding: 7.5em 0 0;
+}
+
+.main-container{
+  max-width: 85%;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.text-head{
+  background-color: #6CACE4;
+  height: 100%;
+  padding: 30px;
+}
+
+.image-head{
+  height:100%;
+  width:100%;
+}
+
+.inside-text-head{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  color: #fff;
+  background-color: inherit;
+  padding: 0.5em;
+  font-family: 'Gotham Rounded Bold';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.75em;
+  letter-spacing: 1px;
+  color: #fff;
+  text-align: left;
+}
+
+.ss1-head {
+  font-size: 40px!important;
+  text-align: left;
+  color:white!important;
+}
+
+.ss1-text, .page.our-story #MainContent .shopify-section .top-section p{
+  font-size: 22px!important;
+  font-weight:700;
+  color: white;
+}
+
+.hero-image{
+  box-sizing: border-box;
+}
+
+.inside-content {
+  background-color: #f8f9fa;
+  padding: 2em 1.5em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.inside-content-text{
+  max-width:834px;
+  padding:0 2.9em;
+}
+
+.middle-text, .page.our-story #MainContent .shopify-section .bottom-section .middle-text{
+  font-size: 19px!important;
+  margin-bottom: 2rem!important;
+  color: #4f4f4f;
+}
+
+.image-middle{
+  margin-top: 0.6rem;
+}
+
+.middle-heading{
+  font-size: 3rem;
+}
+
+.inside-content-grant {
+  background-color: #B9A7D1;
+  padding: 2em 1.5em;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+}
+
+.grant-text{
+  font-size: 19px;
+  color:white!important;
+}
+
+.grant-heading{
+  font-size: 3rem!important;
+  color:white!important;
+}
+
+.grant-btn{
+  margin-top:2rem;
+  border-radius:0.15rem;
+  color: #AE9CDB;
+  border: 1px solid AE9CDB;
+  background:white;
+  font-size:2rem;
+  padding: 8px 32px;
+}
+.grant-btn:hover, .grant-btn:focus, .grant-btn:active{
+  color: white;
+  background: #AE9CDB!important;
+  border-color: #AE9CDB!important;
+  box-shadow: none!important;
+}
+
+.bottom-heading{
+  font-size: 2.5rem!important;
+  margin-bottom: 2rem;
+}
+
+.main-container-ingredients{
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-items .image-area{
+  background-color:#4f4f4f;
+}
+@media (min-width: 768px){
+  .inside-content {
+    padding: 3em 1.5em;
+  }
+  .inside-content-grant, .bottom-section .inside-content{
+    margin-top: 4rem;
+  }
+  .inside-content-grant {
+    justify-content: space-evenly;
+    padding: 4rem 1.5rem;
+  }
+  .middle-heading, .grant-heading{
+    margin-bottom: 2.5rem!important;
+    font-size: 4.8rem!important;
+  }
+}
+@media screen and (max-width:590px){
+  .main-container{
+    max-width:98%;
+  }
+  .inside-content-text{
+    padding:0;
+  }
+  .middle-heading, .grant-heading{
+    font-size:2rem!important;
+  }
+  .bottom-heading{
+    padding:0;
+    font-size: 2rem!important;
+  }
+  .middle-text, .grant-text , .page.our-story #MainContent .shopify-section .bottom-section .middle-text p{
+    font-size:15px!important;
+  }
+  .grant-text{
+    margin-top:15px;
+  }
+  .ss1-head {
+	margin-bottom:40px;
+  }
+  .ss1-text{
+    font-size: 21px;
+    margin-bottom:0;
+  }
+  .top-text-section{
+    margin-top:15px;
+    order:1;
+  }
+  .inside-content, .inside-content-grant{
+    padding-right:1rem;
+    padding-left:1rem;
+  }
+  .text-head {
+	padding:8px;
+  }
+  .middle-section-images{
+    padding-right:0;
+    padding-left:0;
+  }
+  .ingredient-block{
+    padding-left:20px;
+  }
+  .grant-btn{
+    margin-top: 1.6rem;
+  }
+  .grant-text-wrap, .grant-image-wrap{
+    padding: 0;
+  }
+  .product-ingredients-section .product-ingredients .ingredient-item .content-area .rte >p {
+    font-size: 14px;
+  }
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .content-area{
+  width: 92%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 25px;
+}
+
+.image-area:hover .image-area:focus{
+  background: #4f4f4f;
+}
+
+.more_info_btn{
+  position: absolute;
+  display: block!important;
+  background-size: cover!important;
+  bottom: 3rem;
+  left: 2.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: url(https://cdn-icons-png.flaticon.com/128/992/992651.png);
+  transition: background-color .5s;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.active .more_info_btn {
+  background: url('https://cdn-icons-png.flaticon.com/512/1828/1828906.png');
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .image-area , .inside-content .product-ingredients-section .product-ingredients .ingredient-item h3 {
+  transition: all 0.5s, padding-bottom 0s, height 0s;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .rte{
+  opacity: 0;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.rte p:last-child {
+    margin: 0;
+}
+
+.rte:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .image-area  {
+  background: #4f4f4f;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: unset;
+  object-fit: cover;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .image-area img {
+  display: none;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active h3, 
+.product-ingredients-section .product-ingredients .ingredient-item.active .rte {
+  color: white;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .rte p {
+  color: white!important;
+}
+
+.main-container-ingredients .grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 -30px 0 -30px;
+}
+.main-container-ingredients .grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.product-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item {
+    position: relative;    
+    max-width: 30.3333333333%;
+  	width: 30.33333333%;    
+    margin: 0px 1.5% 50px;
+    min-height: 250px;
+    padding: 0
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .image-area {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 250px;
+}
+
+.lazyloaded {
+    opacity: 1;
+    transition: opacity .4s ease;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .image-area img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media(max-width:998px){
+  .product-ingredients-section .product-ingredients .ingredient-item{
+    max-width: 47%;
+  	width: 47%;    
+  }
+}
+@media(max-width:600px){
+  .product-ingredients-section .product-ingredients .ingredient-item{
+    max-width: 400px;
+  	width: 97%;   
+    margin-bottom:25px;
+  }
+}

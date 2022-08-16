@@ -1,0 +1,185 @@
+{%- if section.settings.title != blank or section.blocks.size > 0 -%}
+{{ 'collection-see-style-1.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-see bc-{{settings.section_style}}-bt">
+  <div class="page-width page-width-{{settings.section_style}}">
+    {%- if section.settings.title != blank -%}
+    <div class="collection-see-heading">
+      <h2 class="collection-see__title collection-see__title-{{ section.id }}">
+        {{ section.settings.title }}
+      </h2>
+      {%- render 'style', sufix: '.collection-see__title', id: section.id, style: section.settings -%}
+    </div>
+    {%- endif -%}
+    <ul class="collection-see-list bc-scroll-hide">
+      {%- for block in section.blocks -%}
+      <li class="collection-see-list__item">        
+        {%- if block.settings.button_link -%}
+        <a href="{{ block.settings.button_link }}" target="_blank">
+          {%- endif -%}                     
+          {%- if block.settings.image != blank -%}
+          <div class="collection-see_image__wrap"> 
+            {%- render 'resimg', image: block.settings.image -%}  
+            {%- if block.settings.button_label != blank -%}
+              <div class="collection-see__btn">{{ block.settings.button_label }}</div>
+            {%- endif -%}            
+          </div>
+          {%- else -%}
+          {% assign n_index = forloop.index | modulo:6 | plus: 1 %}
+          <div class="collection-see_image__wrap py-bg-c-light">
+            {{ 'collection-' | append: n_index  | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- if block.settings.button_label != blank -%}
+              <div class="collection-see__btn">{{ block.settings.button_label }}</div>
+            {%- endif -%}  
+          </div>                
+          {%- endif -%}
+          
+          {%- if block.settings.title != blank -%}
+            <h3 class="collection-see__name">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.button_link -%}
+        </a>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Colection See",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "SEEN ON",
+      "label": "t:sections.multicolumn.settings.title.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "t:sections.multicolumn.blocks.column.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+		{
+          "type": "text",
+          "id": "title",
+          "default": "Our Collection",
+          "label": "Title"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Settings"
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Text Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Font Size"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Settings"
+        },
+        {
+          "type": "select",
+          "id": "m_color",
+          "label": "Text Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "text",
+          "id": "m_weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "m_size",
+          "label": "Font Size"
+        },
+		    {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.multicolumn.settings.button_label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.multicolumn.settings.button_link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Colection See",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+		{
+          "type": "column"
+        },
+		{
+          "type": "column"
+        },
+		{
+          "type": "column"
+        },
+		{
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

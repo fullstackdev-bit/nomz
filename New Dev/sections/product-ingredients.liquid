@@ -1,0 +1,130 @@
+<link rel="preload" href="{{ 'ingredients.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+{% assign ss = section.settings %}
+<div class="index-section product-ingredients-section">
+  <div class="main-container-ingredients">
+
+    {% if ss.product_ingredients_heading != blank %}
+    <header class="section-header">
+      <h3 class="section-header__title">
+        {{ ss.product_ingredients_heading }}
+      </h3>
+    </header>
+    {% endif %}
+
+    {% case ss.number_of_items_per_row %}
+    {% when 1 %}
+    {%- assign grid_item_width = '' -%}
+    {% when 2 %}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign grid_item_width = 'medium-up--one-third' -%}
+    {% endcase %}
+
+    <div class="product-ingredients grid grid--uniform flex f-wrap f-j-center" {% if ss.view_more %}data-toggle-group{% endif %}>
+      {% for block in section.blocks %}
+      {% assign bs = block.settings %}
+      {%if bs.image != blank %}
+        <div class="grid__item ingredient-item ingredient-block medium-up--one-third">
+
+          <div class="image-area">
+            {% if bs.image != blank %}
+              <img class="lazyloaded" src="{{ bs.image | img_url: '400x' }}" alt="{{ bs.title | escape }}">
+            {% endif %}
+          </div>
+
+          <div class="content-area ingredient-content-block">
+            <h3>{{ bs.title }}</h3>
+            <div class="rte">
+              {{ bs.text }}
+            </div>
+            <div class="more_info_btn"></div>
+          </div>
+
+        </div>
+       {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Product ingredients",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_product_ingredients",
+        "label": "Show product ingredients?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_ingredients_heading",
+        "label": "Heading",
+        "default": "The Ingredients"
+      },
+      {
+        "type": "checkbox",
+        "id": "view_more",
+        "label": "Show 'View more' button?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "view_more_button",
+        "label": "'View more' button text",
+        "default": "View All Ingredients"
+      },
+      {
+        "type": "text",
+        "id": "view_less_button",
+        "label": "'View less' button text",
+        "default": "View less"
+      },
+      {
+        "type": "range",
+        "id": "number_of_items_per_row",
+        "label": "Number of items per row",
+        "default": 3,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      }
+    ],
+    "blocks": [
+		{
+			"type": "ingredient",
+			"name": "Ingredient",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "text",
+					"label": "Description"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}
+{% javascript %}
+const ingredientInfoToggle = document.querySelectorAll('.more_info_btn');
+ingredientInfoToggle.forEach(element => {
+  console.log(element);
+  element.addEventListener('click', () => {
+    element.parentElement.parentElement.classList.toggle('active');
+  })
+})
+{% endjavascript %}

@@ -1,0 +1,89 @@
+<link rel="preload" href="{{ 'blog.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+{% paginate blog.articles by 12 %}
+  
+<div data-section-id="{{ section.id }}" data-section-type="blog">
+  <div class="page-width page-content py-width-l">
+
+    <header class="section-header">
+      <h1 class="section-header__title">
+        {{ blog.title }}
+      </h1>
+      {% if section.settings.blog_show_tag_filter %}
+        <ul class="blog__tags flex f-a-center f-j-center f-wrap">
+          {% if blog.tags.size > 0 %}
+            <li {% unless current_tags %}class="active"{% endunless %}>
+              <a href="/blogs/{{ blog.handle }}">All</a>
+            </li>
+            {% for tag in blog.all_tags %}
+              {% include 'filter-out-custom-tags' %}
+              {% if tag == 'Products' or tag == 'Wellness' or tag == 'Recipes' or tag == 'Team Write Ups' %}
+                <li {% if current_tags contains tag %}class="active"{% endif %}>
+                  <a href="/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+                </li>
+          	  {% endif %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+      {% endif %}
+    </header>
+
+    <div class="blog__articles flex f-wrap">
+      {% for article in blog.articles %}
+        <article class="blog__article" data-aos>
+          
+          <a href="{{ article.url }}" class="image-area">
+            {% unless article.image == blank %}
+                <div class="article__image--image animate-me lazyloaded"
+                  style="background-image: url({{ article.image | img_url: '500x' }})"></div>
+            {% endunless %}
+          </a>
+
+          <div class="content-area">
+            <div class="article__content-meta">
+              
+              <h2 class="h3 article__h3">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h2>
+
+              {% if section.settings.blog_show_author %}
+                <div class="article__author">by {{ article.author }}</div>
+              {% endif %}
+            </div>
+
+            <div class="rte rte--block">
+              {% if article.excerpt.size > 0 %}
+                {{ article.excerpt }}
+              {% else %}
+                {{ article.content | strip_html | truncatewords: 40 }}
+              {% endif %}
+            </div>
+
+            <a href="{{ article.url }}" class="blog__read-more">
+              {{ 'blogs.article.read_more' | t }}
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      {% include 'pagination' %}
+    {% endif %}
+  </div>
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "blog_show_tag_filter",
+        "label": "Show tag filter"
+      }
+    ]
+  }
+{% endschema %}

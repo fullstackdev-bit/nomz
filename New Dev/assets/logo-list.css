@@ -1,0 +1,35 @@
+.logo-bar__image.tablet-only{
+  display: none;
+}
+.section-header * {
+  text-align: center;
+}
+
+.section-header{
+  margin-top: 10rem;
+}
+
+.logo-bar {
+  display: flex;
+  justify-content: center;  
+  margin-top: 4rem;
+}
+.section-header__title{
+  font-size: 4rem;
+  margin: 2rem 0;
+}
+.rte p {
+  font-size:1.8rem;
+}
+.logo-bar__image {
+  width: 110%;
+}
+
+@media screen and (max-width: 834px) {
+  .logo-bar__image.desktop-only {
+	display: none;
+  }
+  .logo-bar__image.tablet-only{
+	display: block;
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+  {% render 'elevar-head' %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+  </head>
+  <body>
+  {% render 'elevar-checkout-end' %}
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+     <script>
+      (function() {
+        setTimeout(function(){
+          console.log('aa');
+          if(typeof Checkout === 'object') {
+            if (typeof Checkout.$ === 'function') {
+              var $ = Checkout.$;
+              console.log('aa');
+              try {
+                // Change "pre: order" to "pre-order"
+                var $preOrderText = $('.product__description__property.order-summary__small-text:contains("pre: order")');
+                if ($preOrderText) {
+                  $preOrderText.text('pre-order');
+                }
+              } catch (e) {
+                console.error(e);
+              }
+            }
+          }
+        }, 1000);
+      })
+    </script>
+    <script>
+      // Bundle Product Scripts
+      (function(){
+        if (typeof Checkout === 'object' && typeof Checkout.$ === 'function') {
+          var $bundleLineItems = Checkout.$('tr.product').filter(function(){
+            return !!Checkout.$(this).find('.product__description__property:contains("parentBundleName")').length;
+          });
+          // Hide prices
+          $bundleLineItems.find('.product__price').addClass('visually-hidden');
+          // Change "parentBundleName" property to "Ordered"
+          $bundleLineItems.each(function() {
+            var $property = Checkout.$(this).find('.product__description__property:contains("parentBundleName")');
+            var originalText = $property.text();
+            var replacedText = originalText.replace('parentBundleName', 'Ordered');
+            
+            $property.text(replacedText);
+          })
+          // Remove key of pre_order_announcement
+          Checkout.$('.product__description__property').each(function() {
+            var $this = Checkout.$(this);
+            var text = Checkout.$(this).text();
+            // Hide pre-order
+            // Hide pre_order_expected_date
+            if (text.indexOf('pre: ') > -1 || text.indexOf('pre_order_expected_date: ') > -1) {
+              Checkout.$(this).hide();
+            }
+            // Hide pre-order announcement key
+            if (text.indexOf('pre_order_announcement: ') > -1) {
+              var parts = text.split(' will ship out');
+              
+              if (parts[1]) var replacedText = ' will ship out ' + parts[1];
+              else var replacedText = text.replace('pre_order_announcement: ', '');
+              Checkout.$(this).text(replacedText);
+            }
+          })
+        }
+      })()
+    </script>
+  </body>
+</html>

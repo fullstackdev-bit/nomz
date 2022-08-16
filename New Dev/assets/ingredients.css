@@ -1,0 +1,161 @@
+
+.product-ingredients-section .product-ingredients .ingredient-item .content-area{
+  width: 92%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 25px;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .content-area h3{
+  color: #4f4f4f;
+  margin: 0 0 1rem;
+}
+
+.image-area:hover .image-area:focus{
+  background: #4f4f4f;
+}
+
+.more_info_btn{
+  position: absolute;
+  display: block!important;
+  background-size: cover!important;
+  bottom: 3rem;
+  left: 2.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: url(https://cdn-icons-png.flaticon.com/128/992/992651.png);
+  transition: background-color .5s;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.active .more_info_btn {
+  background: url('https://cdn-icons-png.flaticon.com/512/1828/1828906.png');
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .image-area , .inside-content .product-ingredients-section .product-ingredients .ingredient-item h3 {
+  transition: all 0.5s, padding-bottom 0s, height 0s;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .rte{
+  opacity: 0;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.rte p:last-child {
+    margin: 0;
+}
+
+.rte:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .image-area  {
+  background: #4f4f4f;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: unset;
+  object-fit: cover;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .image-area img {
+  display: none;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active h3, 
+.product-ingredients-section .product-ingredients .ingredient-item.active .rte {
+  color: white;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item.active .rte p {
+  color: white!important;
+}
+
+.main-container-ingredients .grid {
+    list-style: none; 
+    padding: 0px 5rem;
+}
+.main-container-ingredients .grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.product-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item {
+    position: relative;
+    margin-bottom: 50px;
+    max-width: 30.3333333333%;
+  	width: 30.33333333%;
+    float: left;
+    margin-left: 1.5%;
+    margin-right:1.5%;
+    min-height: 250px;
+    padding: 0
+}
+@media(max-width:1000px){
+  .product-ingredients-section .product-ingredients .ingredient-item {
+    max-width:46%;
+    width:46%;
+  }
+  .main-container-ingredients .grid{
+    padding:0px 1.5rem;
+  }
+}
+@media(max-width:767px){
+  .product-ingredients-section .product-ingredients .ingredient-item {
+    max-width:400px;
+    width:100%;
+  }
+}
+.product-ingredients-section .product-ingredients .ingredient-item .image-area {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 250px;
+}
+
+.lazyloaded {
+    opacity: 1;
+    transition: opacity .4s ease;
+}
+
+.product-ingredients-section .product-ingredients .ingredient-item .image-area img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-header__title {
+  text-align: center;
+  position: relative;
+  font-size: 3rem;
+  color: #4f4f4f;
+}
+
+@media screen and (max-width:590px){
+  .ingredient-block{
+    padding-left:20px;
+  }
+  .product-ingredients-section .product-ingredients .ingredient-item .content-area .rte >p {
+    font-size: 14px;
+  }
+}

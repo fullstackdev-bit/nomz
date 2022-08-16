@@ -1,0 +1,98 @@
+.page-title {
+  margin-top: 0;
+}
+
+.main-page-title {
+  text-align: center;
+    font-weight: 100;
+    font-size: 28px;
+    color: #444;
+    margin-bottom: 30px;
+}
+.page #MainContent  p,.page #MainContent  li{
+  font-weight: 100!important;
+  font-size: 13px;
+  color: #373737;
+}
+.page #MainContent p a{
+  color: #373737;
+  font-weight: 400;
+  text-decoration: underline;
+}
+button.accordion {
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #000;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    margin-top: 15px;
+    font-family: frank-new,sans-serif!important;
+    font-weight: 500!important;
+}
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: 700;
+    float: right;
+    margin-left: 5px;
+}
+button.accordion.active:after {
+    content: "\2212";
+}
+.panel-text {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.panel-text.active{
+  display:block;
+}
+@media(min-width:767px){
+  .page.contact #MainContent{ 
+   
+    border: 1px solid gainsboro;    
+}
+}
+
+.page.contact #MainContent{
+  max-width: 650px;
+    margin: 40px auto;
+    
+    padding: 20px 10px 0px;
+}
+.page.contact #MainContent>section:first-child{
+  margin-top:0px;
+}
+.page.contact .contact__fields{
+  display: flex;
+  flex-direction: column;
+}
+.page.contact .field input{
+  border-color:#444;
+}
+
+@media screen and (min-width: 750px) {
+  
+}
+
+.page-placeholder-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.page-placeholder {
+  width: 52.5rem;
+  height: 52.5rem;
+}
+
+.section-header__title{
+  text-align:center;
+}

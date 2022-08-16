@@ -1,0 +1,492 @@
+{{ 'section-blog-with-category.css' | asset_url | stylesheet_tag }}
+<style>
+  .section-{{section.id}} .bc-blog-with-category__category-item,
+  .section-{{section.id}} .bc-blog-with-category__category-item path{
+    {%if section.settings.cat_heading_color != blank%}
+    color: {{section.settings.cat_heading_color}};
+    fill:{{section.settings.cat_heading_color}};
+    {% endif %}    
+  }  
+  .section-{{section.id}} .bc-blog-with-category__category-item{
+    {%if section.settings.cat_heading_font_size != blank%}
+    font-size: {{section.settings.cat_heading_font_size}};
+    {% endif %}
+    {%if section.settings.cat_heading_font_style != blank%}
+    font-style: {{section.settings.cat_heading_font_style}};
+    {% endif %}
+    {%if section.settings.cat_heading_font_weight != blank%}
+    font-weight: {{section.settings.cat_heading_font_weight}};
+    {% endif %}
+    {%if section.settings.cat_heading_line_height != blank%}
+    line-height: {{section.settings.cat_heading_line_height}};
+    {% endif %}
+  }
+  .section-{{section.id}} .bc-article-card__title{
+    {%if section.settings.heading_color != blank%}
+    color: {{section.settings.heading_color}};
+    {% endif %}
+    {%if section.settings.heading_font_size != blank%}
+    font-size: {{section.settings.heading_font_size}};
+    {% endif %}
+    {%if section.settings.heading_font_style != blank%}
+    font-style: {{section.settings.heading_font_style}};
+    {% endif %}
+    {%if section.settings.heading_font_weight != blank%}
+    font-weight: {{section.settings.heading_font_weight}};
+    {% endif %}
+    {%if section.settings.heading_line_height != blank%}
+    line-height: {{section.settings.heading_line_height}};
+    {% endif %}
+  }
+  .section-{{section.id}} .bc-article-card__excerpt{
+    {%if section.settings.excerpt_color != blank%}
+    color: {{section.settings.excerpt_color}};
+    {% endif %}
+    {%if section.settings.excerpt_font_size != blank%}
+    font-size: {{section.settings.excerpt_font_size}};
+    {% endif %}
+    {%if section.settings.excerpt_font_style != blank%}
+    font-style: {{section.settings.excerpt_font_style}};
+    {% endif %}
+    {%if section.settings.excerpt_font_weight != blank%}
+    font-weight: {{section.settings.excerpt_font_weight}};
+    {% endif %}
+    {%if section.settings.excerpt_line_height != blank%}
+    line-height: {{section.settings.excerpt_line_height}};
+    {% endif %}
+  }
+</style>
+<div class="bc-blog-with-category section-{{section.id}} bc-{{settings.section_style}}-bt py-{{section.settings.section_bg_color}}">
+  <div class="page-width page-width-{{settings.section_style}}">
+    <blog-category class="bc-blog-with-category__wrapper">
+        {%- if section.blocks.size > 0 -%}
+            <div class="bc-blog-with-category__category-content">
+                <ul class="bc-blog-with-category__category-list list-unstyled" style="color:{{ section.settings.color }};">
+                    {%- for block in section.blocks -%}
+                        {%- if block.settings.category != blank -%}
+                            <li class="bc-blog-with-category__category-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index }}">
+                                {{ block.settings.category }}
+                                {% render 'new-icons', type: 'arrow-right', color: section.settings.color %}
+                            </li>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </ul>
+            </div>
+            <div class="bc-blog-with-category__blog-content" style="color: {{ section.settings.color }};">
+                {%- for block in section.blocks -%}
+                    <ul class="bc-blog-with-category__blog-list list-unstyled {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index }}">
+                        {%- if block.settings.blog != blank -%}
+                        {%- for article in blogs[block.settings.blog].articles limit: 4 -%}
+                            <li class="bc-blog-with-category__blog-item">
+                                <article class="bc-article-card{% if article.image == blank or show_image == false %} bc-article-card--no-image{% endif %}" aria-labelledby="Article-{{ article.id }}">
+                                    <a href="{{ article.url }}" class="bc-article-content">
+                                        {%- if article.image -%}
+                                        <div class="bc-article-card__image-wrapper">
+                                            <div class="bc-article-card__image media media--landscape">
+                                            <img srcset="
+                                                {%- if article.image.src.width >= 165 -%}{{ article.image.src | img_url: '165x' }} 165w,{%- endif -%}
+                                                {%- if article.image.src.width >= 360 -%}{{ article.image.src | img_url: '360x' }} 360w,{%- endif -%}
+                                                {%- if article.image.src.width >= 533 -%}{{ article.image.src | img_url: '533x' }} 533w,{%- endif -%}
+                                                {%- if article.image.src.width >= 720 -%}{{ article.image.src | img_url: '720x' }} 720w,{%- endif -%}
+                                                {%- if article.image.src.width >= 940 -%}{{ article.image.src | img_url: '940x' }} 940w,{%- endif -%}
+                                                {%- if article.image.src.width >= 1066 -%}{{ article.image.src | img_url: '1066x' }} 1066w{%- endif -%}"
+                                                src="{{ article.image.src | img_url: '533x' }}"
+                                                sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                                                alt="{{ article.image.src.alt | escape }}"
+                                                width="{{ article.image.width }}"
+                                                height="{{ article.image.height }}"
+                                                loading="lazy"
+                                            >
+                                            </div>
+                                        </div>
+                                        {%- endif -%}
+
+                                        <div class="bc-article-card__info">
+                                            <header class="bc-article-card__header">
+                                                <h2 class="bc-article-card__title" id="Article-{{ article.id }}">
+                                                    {{ article.title | escape }}
+                                                </h2>
+                                                {%- if block.settings.show_date -%}
+                                                    <span class="circle-divider caption-with-letter-spacing">
+                                                    {{- article.published_at | time_tag: format: 'month_year' -}}
+                                                    </span>
+                                                {%- endif -%}
+                                                {%- if block.settings.show_author -%}
+                                                    <span class="caption-with-letter-spacing">{{ article.author -}}</span>
+                                                {%- endif -%}
+                                            </header>
+
+                                            {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+                                            <p class="bc-article-card__excerpt">
+                                                {%- if article.excerpt.size > 0 -%}
+                                                {{ article.excerpt | strip_html | truncatewords: 20 }}
+                                                {%- else -%}
+                                                {{ article.content | strip_html | truncatewords: 20 }}
+                                                {%- endif -%}
+                                            </p>
+                                            {%- endif -%}
+
+                                            <div class="bc-article-card__footer">
+                                                {%- if block.settings.show_read_more -%}
+                                                <span class="link bc-article-card__link" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title | escape }}">
+                                                    {{ 'blogs.article.read_more' | t }}
+                                                </span>
+                                                {%- endif -%}
+
+                                                {%- if article.comments_count > 0 and blog.comments_enabled? and block.settings.show_comment -%}
+                                                    <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
+                                                {%- endif -%}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                        {%- endfor -%}
+                        {% else %}
+                        {%- for i in (1..4) -%}
+                            <li class="bc-blog-with-category__blog-item">
+                                <article class="bc-article-card{% if show_image == false %} bc-article-card--no-image{% endif %}">
+                                    <a href="/" class="bc-article-content">                                        
+                                        <div class="bc-article-card__image-wrapper py-bg-c-light">
+                                            <div class="bc-article-card__image media media--landscape">
+                                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                            </div>
+                                        </div>                                        
+
+                                        <div class="bc-article-card__info">
+                                            <header class="bc-article-card__header">
+                                                <h2 class="bc-article-card__title" >
+                                                    article title
+                                                </h2>                                                
+                                                {%- if block.settings.show_author -%}
+                                                    <span class="caption-with-letter-spacing">article author</span>
+                                                {%- endif -%}
+                                            </header>
+
+                                            
+                                            <p class="bc-article-card__excerpt">                                                
+                                                article-excerpt article-excerpt article-excerpt article-excerpt article-excerpt article-excerpt
+                                            </p>                                           
+
+                                            <div class="bc-article-card__footer">                                                
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                        {%- endfor -%}
+                        {%- endif -%}
+                    </ul>
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+    </blog-category>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Blog With Category",
+    "tag": "section",
+    "settings": [	 
+      {
+        "type": "select",
+        "id": "section_bg_color",
+        "label": "Info section Background Color",
+        "options": [
+          {
+            "label": "Unset",
+            "value": "bg-c-un"
+          },
+          {
+            "label": "None",
+            "value": "bg-c-none"
+          },        
+          {
+            "label": "Dark",
+            "value": "bg-c-dark"
+          },
+          {
+            "label": "Average",
+            "value": "bg-c-average"
+          },
+          {
+            "label": "Light",
+            "value": "bg-c-light"
+          }
+        ],
+        "default": "bg-c-un"
+      },
+      {
+        "type": "select",
+        "id": "cat_heading_color",        
+        "label": "Categroy List Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_font_size",
+        "label": "Categroy List Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_font_weight",
+        "label": "Categroy List Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_line_height",
+        "label": "Categroy List line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "cat_heading_font_style",
+        "label": "Categroy List Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "heading_color",        
+        "label": "Blog Title Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_size",
+        "label": "Blog Title Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_weight",
+        "label": "Blog Title Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "heading_line_height",
+        "label": "Blog Title line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_style",
+        "label": "Blog Title Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_color",        
+        "label": "Blog excerpt Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_font_size",
+        "label": "Blog excerpt Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_font_weight",
+        "label": "Blog excerpt Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_line_height",
+        "label": "Blog excerpt line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_font_style",
+        "label": "Blog excerpt Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      }     
+	],
+	"blocks": [ 
+	  {
+		"type": "blog",
+		"name": "Blog",
+		"limit": 4,
+		"settings": [
+          {
+            "type": "text",
+            "id": "category",
+            "label": "Category Label",
+            "default": "Healthy Undies"
+          },
+		  {
+			"type": "blog",
+			"id": "blog",
+			"label": "Blog"
+		  },
+          {
+            "type": "checkbox",
+            "id": "show_date",
+            "label": "Show Date",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_author",
+            "label": "Show Author",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_read_more",
+            "label": "Show Read More",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_comment",
+            "label": "Show Comment",
+            "default": false
+          }
+		]
+	  }
+	],
+	"presets": [
+	  {
+		"name": "Blog with Category",
+		"blocks": [ 
+		   {"type": "blog"},
+		   {"type": "blog"},
+           {"type": "blog"},
+		   {"type": "blog"}
+		]
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+    class BlogCategory extends HTMLElement {
+
+        constructor(){
+            super();
+            
+            this.blogContents = this.querySelectorAll('.bc-blog-with-category__blog-list');
+            this.blogButtons = this.querySelectorAll('.bc-blog-with-category__category-item');
+            this.blogButtons.length && this.blogButtons.forEach(button => {
+                button.addEventListener('click', this.open.bind(this));
+            });
+        }
+
+        open(event){
+            
+            if(!event.target) return;
+            let tabElem = event.target;
+            let index = tabElem.getAttribute('data-index');
+            
+            this.blogButtons.length && this.blogButtons.forEach(tab => {
+                if(tab.getAttribute('data-index') === index){
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            this.blogContents.length && this.blogContents.forEach(content => {
+                if(content.getAttribute('data-index') === index){
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+
+        }
+
+    };
+
+    customElements.define('blog-category', BlogCategory);
+
+{% endjavascript %}

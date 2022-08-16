@@ -1,0 +1,274 @@
+{% assign ss= section.settings %}
+{% style %}
+  .hero-alt {
+    background-image: url({{ section.settings.main_hero_img | img_url: '1200x'}});
+  }
+  .overlapping-feature__image.overlapping-feature--left::after{
+    background-image: url({{ ss.section_2_img | img_url: '1200x'}});
+  }
+  .overlapping-feature__image.overlapping-feature--right::after{
+    background-image: url({{ ss.section_3_img | img_url: '1200x'}});
+  }
+  .hero-alt:last-of-type {
+    background-image: url({{ ss.section_6_img | img_url: '1200x'}});
+  }
+  @media screen and (max-width: 590px) {
+    .hero-alt {
+      background-image: url({{ section.settings.main_hero_img_sm | img_url: '1200x'}});
+    }
+	.feature__image{
+	  width: 100%;
+	  height: 12rem;
+      background-size: cover;
+	  margin-top: 1rem;
+      background-image: url({{ ss.section_2_img_sm | img_url: '1200x'}});
+    }
+    .feature__image-right{
+	  width: 100%;
+	  height: 12rem;
+      background-size: cover;
+	  margin-top: 1rem;
+      background-image: url({{ ss.section_3_img_sm | img_url: '1200x'}});
+    }
+    .hero-alt:last-of-type {
+      background-image: url({{ ss.section_6_img_sm | img_url: '1200x'}});
+    }
+  }
+{% endstyle %}
+<main class="wrapper">
+  <section class="hero-alt">
+    <h1>{{ ss.main_hero_title }}</h1>
+		<p>{{ ss.main_hero_subtitle }}</p>
+  </section>
+  <section class="grant-info-container">
+    <div id="project">	
+      <div class="overlapping-feature__container">
+        <div class="overlapping-feature">
+    
+          <div class="overlapping-feature__image overlapping-feature--left"></div>
+    
+          <div class="overlapping-feature__content overlapping-feature--right overlapping-feature--center">
+            <div class="overlapping-feature--center image-first">
+              <h2>{{ ss.section_2_title }}</h2>
+              <div class="feature__image"></div>
+              <p>{{ ss.section_2_text}}</p>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <div id="project">	
+      <div class="overlapping-feature__container">
+        <div class="overlapping-feature">
+    
+          <div class="overlapping-feature__content overlapping-feature--left overlapping-feature--center">
+            <div class="overlapping-feature--center image-second">
+              <h2>{{ ss.section_3_title }}</h2>
+              <div class="feature__image-right"></div>
+              <p>{{ ss.section_3_text}}</p>
+            </div>
+          </div>
+          <div class="overlapping-feature__image overlapping-feature--right"></div>
+    
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="breweries" id="breweries">
+    <h2 class="recipients-title" id="redirect">{{ ss.section_4_main_title }}</h2>
+    <ul>
+      <li>
+        <figure>
+          <img src="{{ ss.section_4_img | img_url: '1200x'}}" alt="">
+          <figcaption><h3>{{ ss.section_4_title }}</h3></figcaption>
+        </figure>
+        <p>
+          {{ ss.section_4_text }}
+        </p>
+        <a class="grant-button" data-js="open1" href="#redirect">More info</a>
+      </li>
+			<div class="popup1">
+				<div>
+          <h2>{{ ss.section_4_more_title }}</h2>
+          <p>{{ ss.section_4_more_text}}
+          </p>
+          <button name="close">Close</button>
+        </div>
+			</div>
+      <li>
+        <figure>
+          <img src="{{ ss.section_5_img | img_url: '1200x'}}" alt="">
+          <figcaption><h3>{{ ss.section_5_title }}</h3></figcaption>
+        </figure>
+        <p>
+          {{ ss.section_5_text }}
+        </p>
+        <a class="grant-button" data-js="open2" href="#redirect">More info</a>
+      </li>
+      <div class="popup2">
+				<div>
+          <h2>{{ ss.section_5_more_title }}</h2>
+          <p>{{ ss.section_5_more_text}}
+          </p>
+          <button name="close">Close</button>
+        </div>
+			</div>
+    </ul>
+  </section>
+  <section class="hero-alt">
+    <h1>{{ ss.section_6_title }}</h1>
+		<p>{{ ss.section_6_text}}</p>
+    <a href="../pages/contact-1" class="grant-contact-btn">Contact Us</a>
+  </section>
+</main>
+
+{% schema %}
+ {
+   "name": "Grant Page",
+   "settings": [
+    {
+      "type": "text",
+      "id": "main_hero_title",
+      "label": "Main title for the page",
+      "default": "The nomz Grant"
+    },
+    {
+      "type": "text",
+      "id": "main_hero_subtitle",
+      "label": "Main subtitle for the page"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_hero_img",
+      "label": "Image for top hero(desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_hero_img_sm",
+      "label": "Image for top hero(mobile)"
+    },
+    {
+      "type": "text",
+      "id": "section_2_title",
+      "label": "Title for second section",
+      "default": "How It Started"
+    },
+    {
+      "type": "textarea",
+      "id": "section_2_text",
+      "label": "Text for second section"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_2_img",
+      "label": "Image for second section(desktop)"
+    },
+	{
+      "type": "image_picker",
+      "id": "section_2_img_sm",
+      "label": "Image for second section(mobile)"
+    },
+    {
+      "type": "text",
+      "id": "section_3_title",
+      "label": "Title for third section",
+      "default": "How To Apply"
+    },
+    {
+      "type": "textarea",
+      "id": "section_3_text",
+      "label": "Text for third section"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_3_img",
+      "label": "Image for third section(dektop)"
+    },
+	{
+      "type": "image_picker",
+      "id": "section_3_img_sm",
+      "label": "Image for third section(mobile)"
+    },
+    {
+      "type": "text",
+      "id": "section_4_main_title",
+      "label": "Main title for fourth section",
+      "default": "Recipients Of The Grant"
+    },
+    {
+      "type": "text",
+      "id": "section_4_title",
+      "label": "Title for fourth section(left)",
+      "default": "Sept 25 2020"
+    },
+    {
+      "type": "textarea",
+      "id": "section_4_text",
+      "label": "Text for fourth section(left)"
+    },
+    {
+      "type": "text",
+      "id": "section_4_more_title",
+      "label": "More info title for fourth section(left)"
+    },
+    {
+      "type": "textarea",
+      "id": "section_4_more_text",
+      "label": "More info text for fourth section(left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_4_img",
+      "label": "Image for fourth section(left)"
+    },
+    {
+      "type": "text",
+      "id": "section_5_title",
+      "label": "Title for fourth section(right)",
+      "default": "October 1, 2021"
+    },
+    {
+      "type": "textarea",
+      "id": "section_5_text",
+      "label": "Text for fourth section(right)"
+    },
+    {
+      "type": "text",
+      "id": "section_5_more_title",
+      "label": "More info title for fourth section(right)"
+    },
+    {
+      "type": "textarea",
+      "id": "section_5_more_text",
+      "label": "More info text for fourth section(right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_5_img",
+      "label": "Image for fourth section(right)"
+    },
+    {
+      "type": "text",
+      "id": "section_6_title",
+      "label": "Title for fifth section",
+      "default": "Looking to get in touch?"
+    },
+    {
+      "type": "text",
+      "id": "section_6_subtitle",
+      "label": "Subtitle for fifth section"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_6_img",
+      "label": "Image for fifth section(desktop)"
+    },
+	{
+      "type": "image_picker",
+      "id": "section_6_img_sm",
+      "label": "Image for fifth section(mobile)"
+    }
+   ]
+ }
+{% endschema %}

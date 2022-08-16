@@ -1,0 +1,372 @@
+{% assign ss = section.settings %}
+{% style %}
+.item:nth-child(1) { background-image: url({{ ss.img_1 | img_url: '1200x'}}) ;}
+.item:nth-child(2) { background-image: url({{ ss.img_2 | img_url: '1200x'}}) ;}
+.item:nth-child(3) { background-image: url({{ ss.img_3 | img_url: '1200x'}}) ;}
+.item:nth-child(4) { background-image: url({{ ss.img_4 | img_url: '1200x'}}) ;}
+.item:nth-child(5) { background-image: url({{ ss.img_5 | img_url: '1200x'}}) ;}
+.item:nth-child(6) { background-image: url({{ ss.img_6 | img_url: '1200x'}}) ;}
+.item:nth-child(7) { background-image: url({{ ss.img_7 | img_url: '1200x'}}) ;}
+.item:nth-child(8) { background-image: url({{ ss.img_8 | img_url: '1200x'}}) ;}
+.item:nth-child(9) { background-image: url({{ ss.img_9 | img_url: '1200x'}}) ;}
+.item:nth-child(10) { background-image: url({{ ss.img_10 | img_url: '1200x'}}) ;}
+.item:nth-child(11) { background-image: url({{ ss.img_11 | img_url: '1200x'}}) ;}
+.item:nth-child(12) { background-image: url({{ ss.img_12 | img_url: '1200x'}}) ;}
+.item:nth-child(13) { background-image: url({{ ss.img_13 | img_url: '1200x'}}) ;}
+.item:nth-child(14) { background-image: url({{ ss.img_14 | img_url: '1200x'}}) ;}
+.item:nth-child(15) { background-image: url({{ ss.img_15 | img_url: '1200x'}}) ;}
+.item:nth-child(16) { background-image: url({{ ss.img_16 | img_url: '1200x'}}) ;}
+.item:nth-child(17) { background-image: url({{ ss.img_17 | img_url: '1200x'}}) ;}
+.item:nth-child(18) { background-image: url({{ ss.img_18 | img_url: '1200x'}}) ;}
+.item:nth-child(19) { background-image: url({{ ss.img_19 | img_url: '1200x'}}) ;}
+.item:nth-child(20) { background-image: url({{ ss.img_20 | img_url: '1200x'}}) ;}
+
+{% endstyle %}
+
+<header class="slider-header">
+	<a href="https://www.instagram.com/nomz/">@nomz</a>
+</header>
+<main class="slider-content">
+	<div class="items" id="items">
+		<div class="item item1 {% unless ss.img_1_url %} hide {% endunless %}"> 
+			<a href="{{ ss.img_1_url }}" class="item-link"></a>
+		</div>
+		<div class="item item2{% unless ss.img_2_url %} hide {% endunless %}">
+			<a href="{{ ss.img_2_url }}" class="item-link"></a>
+		</div>
+		<div class="item item3{% unless ss.img_3_url %} hide {% endunless %}">
+			<a href="{{ ss.img_3_url }}" class="item-link"></a>
+		</div>
+		<div class="item item4{% unless ss.img_4_url %} hide {% endunless %}">
+			<a href="{{ ss.img_4_url }}" class="item-link"></a>
+		</div>
+		<div class="item item5{% unless ss.img_5_url %} hide {% endunless %}">
+			<a href="{{ ss.img_5_url }}" class="item-link"></a>
+		</div>
+		<div class="item item6{% unless ss.img_6_url %} hide {% endunless %}">
+			<a href="{{ ss.img_6_url }}" class="item-link"></a>
+		</div>
+		<div class="item item7{% unless ss.img_7_url %} hide {% endunless %}">
+			<a href="{{ ss.img_7_url }}" class="item-link"></a>
+		</div>
+		<div class="item item8{% unless ss.img_8_url %} hide {% endunless %}">
+			<a href="{{ ss.img_8_url }}" class="item-link"></a>
+		</div>
+		<div class="item item9{% unless ss.img_9_url %} hide {% endunless %}">
+			<a href="{{ ss.img_9_url }}" class="item-link"></a>
+		</div>
+		<div class="item item10{% unless ss.img_10_url %} hide {% endunless %}">
+			<a href="{{ ss.img_10_url }}" class="item-link"></a>
+		</div>
+		<div class="item item11 {% unless ss.img_11_url %} hide {% endunless %}">
+			<a href="{{ ss.img_11_url }}" class="item-link"></a>
+		</div>
+		<div class="item item12 {% unless ss.img_12_url %} hide {% endunless %}">
+			<a href="{{ ss.img_12_url }}" class="item-link"></a>
+		</div>
+		<div class="item item13{% unless ss.img_13_url %} hide {% endunless %}">
+			<a href="{{ ss.img_13_url }}" class="item-link"></a>
+		</div>
+		<div class="item item14{% unless ss.img_14_url %} hide {% endunless %}">
+			<a href="{{ ss.img_14_url }}" class="item-link"></a>
+		</div>
+		<div class="item item15{% unless ss.img_15_url %} hide {% endunless %}">
+			<a href="{{ ss.img_15_url }}" class="item-link"></a>
+		</div>
+		<div class="item item16{% unless ss.img_16_url %} hide {% endunless %}">
+			<a href="{{ ss.img_16_url }}" class="item-link"></a>
+		</div>
+		<div class="item item17{% unless ss.img_17_url %} hide {% endunless %}">
+			<a href="{{ ss.img_17_url }}" class="item-link"></a>
+		</div>
+		<div class="item item18{% unless ss.img_18_url %} hide {% endunless %}">
+			<a href="{{ ss.img_18_url }}" class="item-link"></a>
+		</div>
+		<div class="item item19{% unless ss.img_19_url %} hide {% endunless %}">
+			<a href="{{ ss.img_19_url }}" class="item-link"></a>
+		</div>
+		<div class="item item20{% unless ss.img_20_url %} hide {% endunless %}">
+			<a href="{{ ss.img_20_url }}" class="item-link"></a>
+		</div>
+  </div>
+</main>
+
+{% schema %}
+	{
+		"name": "Insta Feed Widget",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "img_1",
+				"label": "Image 1"
+			},
+			{
+				"type": "url",
+				"id": "img_1_url",
+				"label": "Image 1 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_2",
+				"label": "Image 2"
+			},
+			{
+				"type": "url",
+				"id": "img_2_url",
+				"label": "Image 2 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_3",
+				"label": "Image 3"
+			},
+			{
+				"type": "url",
+				"id": "img_3_url",
+				"label": "Image 3 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_4",
+				"label": "Image 4"
+			},
+			{
+				"type": "url",
+				"id": "img_4_url",
+				"label": "Image 4 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_5",
+				"label": "Image 5"
+			},
+			{
+				"type": "url",
+				"id": "img_5_url",
+				"label": "Image 5 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_6",
+				"label": "Image 6"
+			},
+			{
+				"type": "url",
+				"id": "img_6_url",
+				"label": "Image 6 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_7",
+				"label": "Image 7"
+			},
+			{
+				"type": "url",
+				"id": "img_7_url",
+				"label": "Image 7 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_8",
+				"label": "Image 8"
+			},
+			{
+				"type": "url",
+				"id": "img_8_url",
+				"label": "Image 8 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_9",
+				"label": "Image 9"
+			},
+			{
+				"type": "url",
+				"id": "img_9_url",
+				"label": "Image 9 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_10",
+				"label": "Image 10"
+			},
+			{
+				"type": "url",
+				"id": "img_10_url",
+				"label": "Image 10 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_11",
+				"label": "Image 11"
+			},
+			{
+				"type": "url",
+				"id": "img_11_url",
+				"label": "Image 11 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_12",
+				"label": "Image 12"
+			},
+			{
+				"type": "url",
+				"id": "img_12_url",
+				"label": "Image 12 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_13",
+				"label": "Image 13"
+			},
+			{
+				"type": "url",
+				"id": "img_13_url",
+				"label": "Image 13 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_14",
+				"label": "Image 14"
+			},
+			{
+				"type": "url",
+				"id": "img_14_url",
+				"label": "Image 14 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_15",
+				"label": "Image 15"
+			},
+			{
+				"type": "url",
+				"id": "img_15_url",
+				"label": "Image 15 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_16",
+				"label": "Image 16"
+			},
+			{
+				"type": "url",
+				"id": "img_16_url",
+				"label": "Image 16 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_17",
+				"label": "Image 17"
+			},
+			{
+				"type": "url",
+				"id": "img_17_url",
+				"label": "Image 17 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_18",
+				"label": "Image 18"
+			},
+			{
+				"type": "url",
+				"id": "img_18_url",
+				"label": "Image 18 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_19",
+				"label": "Image 19"
+			},
+			{
+				"type": "url",
+				"id": "img_19_url",
+				"label": "Image 19 url to instagram post"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_20",
+				"label": "Image 20"
+			},
+			{
+				"type": "url",
+				"id": "img_20_url",
+				"label": "Image 20 url to instagram post"
+			}
+		],
+		"presets": [
+      {
+        "name": "Instagram feed widget",
+        "category": "Image"
+      }
+    ]
+	}
+{% endschema %}
+
+{% javascript %} 
+
+const slider = document.querySelector('#items');
+console.log(slider);
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+  console.log("erreerre", scrollLeft)
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;  // stop the fn from running
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+  slider.scrollLeft = scrollLeft - walk;
+  
+  console.log('sdsd', scrollLeft)
+  console.log(slider.scrollLeft)
+});
+
+
+//   touchEvents
+
+slider.addEventListener('touchstart', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('touchend', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('touchcancel', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('touchmove', (e) => {
+  if (!isDown) return;  // stop the fn from running
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+  slider.scrollLeft = scrollLeft - walk;
+});
+{% endjavascript %}

@@ -1,0 +1,50 @@
+.blog-articles {
+  display: grid;
+  grid-gap: 1rem;
+}
+.article-card__footer .article-card__link{
+  color:black;
+}
+.article-card__info{
+  padding:35px 0px;
+  background:white;  
+}
+.article-card__info .article-card__title{
+  font-size:15px;
+  color: #373737;
+}
+.article-card__info .article-card__excerpt{
+  font-size:13.5px;
+  font-weight:100;
+  color: #373737;
+}
+.article-card__image-wrapper .media--landscape {
+    padding-bottom: 94.6%;
+}
+.main-blog .title--primary{
+  text-align: center;
+    margin-top: -20px;
+    margin-bottom: 60px;
+    font-size: 28px;
+    font-weight: 100;
+    color: #444;
+    text-transform: uppercase;
+}
+@media screen and (min-width: 750px) {
+  .blog-articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .blog-articles > .article{
+    align-items: center;
+    width: 32.33%;
+    margin-bottom: 35px;
+  }
+}
+@media screen and (min-width:750px) and (max-width:1024px){
+  .blog.try-on-reviews .blog-articles > .article{
+    width: 49%;
+  }
+}

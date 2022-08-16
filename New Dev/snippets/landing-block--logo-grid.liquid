@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="{{ 'logo-grid.css' | asset_url }}" >
+
+<div class="page-width">
+
+  {% if bs.title != blank or bs.text != blank %}  
+    <div class="section-header">
+      
+      {% if bs.title != blank %}
+        <h2 class="section-header__title">{{ bs.title | escape }}</h2>
+      {% endif %}
+
+      {% if bs.text != blank %}
+        <div class="rte">{{ bs.text }}</div>
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+  <div class="logo-grid__list-wrapper" data-overlay-scrollbars>
+    <div class="logo-grid__list">
+      
+      {% for i in (1..15) %}
+        {% capture logo_image %}logo_image_{{i}}{% endcapture %}
+        {% capture logo_link %}logo_link_{{i}}{% endcapture %}
+        
+        {% if bs[logo_image] != blank %}
+          <div class="logo-grid__item">
+            {% assign img_url = bs[logo_image] | img_url: 'x2000' %}
+
+            {% if bs[logo_link] != blank %}
+              <a href="{{ bs[logo_link] }}" class="logo-grid__link">
+            {% endif %}
+            <img class="lazyload"
+                src="{{ img_url }}"
+                alt="{{ bs[logo_image].alt | default: bs.title }}">
+            {% if bs[logo_link] != blank %}
+              </a>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+.page-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media only screen and (min-width: 590px) {
+  .page-content {
+      padding-bottom: 60px;
+  }
+  .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-star {
+    width: 17.5px!important;
+  }
+  .yotpo.bottomLine  .text-m {
+    margin-left: 1rem;
+  }
+}
+.product__description *{
+  color: #4f4f4f;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  font-weight: 400;
+}
+
+.product__description p{
+  margin-bottom: 2.5rem;
+}
+
+ul, ol {
+  margin: 0 0 2rem 4rem;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  list-style: none;
+  letter-spacing: 0.375px;
+  line-height: 2.4rem;
+}
+
+.c-virtual_list__item li {
+  margin-bottom: 1rem;
+}
+
+b, strong{
+  font-weight: bold!important;
+  color: #202020!important;
+}
+
+.product__description p a {
+  display: inline-block;
+  margin-right: 20%;
+}
+.product__description p a:after {
+  content: "";
+  display: block;
+  bottom: 100%;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #4f4f4f;
+  transition: width 0.5s ease;
+}
+.product__description p a:hover:after {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+
+.product__title h1{
+  color: #4f4f4f!important;
+  font-size: 3.5rem!important;
+}
+
+.product-form__quantity .form__label {
+  display: none;
+}
+
+@media screen and (max-width: 1300px) {
+  .main-container-ingredients .grid {
+    padding: 0 5rem;
+  }
+}
+
+.product__media-list .grid__item{
+  padding: 0.2rem;
+}
+
+.product__media-list .product__media {
+  padding-top: 125%!important;
+}
+
+.product-form, .product-form form , .product-form__buttons{
+  height: 100%;
+}
+
+quantity-input + div {
+  width: 100%;
+}
+
+
+@media screen and (min-width: 990px) {
+  .product--small:not(.product--no-media) .product__media-wrapper {
+    max-width: 39%;
+    padding-right: 4rem;;
+  }
+  .product--stacked .product__media-item {
+    max-width: 50%;
+  }
+}
+@media screen and (min-width: 589px) {
+  .product__title h1{
+    font-size:29px;
+  }
+}
+

@@ -1,0 +1,179 @@
+{% assign ss= section.settings %}
+
+<div class="container-login" id="container">
+	<div class="form-container sign-up-container">
+			{% form 'create_customer' %}
+				{{ form.errors | default_errors }}
+				<h1>{{ ss.sign_up_title }}</h1>
+				<span>{{ ss.sign_up_subtitle }}</span>
+				<input class="input-login" name="customer[first_name]" id="FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} type="text" placeholder="First Name" />
+				<input class="input-login" name="customer[last_name]" id="LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} type="text" placeholder="Last Name" />
+				<input class="input-login{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" name="customer[email]" id="Email" type="email" placeholder="Email" />
+				<input class="input-login{% if form.errors contains 'password' %} error{% endif %}" name="customer[password]" id="CreatePassword" type="password" placeholder="Password" />
+				<input type="submit" value="Sign Up" class="button-login"/>
+			{% endform %}
+	</div>
+	<div class="form-container sign-in-container" id="CustomerLoginForm">
+			{% form 'customer_login' %}
+				{{ form.errors | default_errors }}
+				<h1>{{ ss.sign_in_title}}</h1>
+				<span>{{ ss.sign_in_subtitle}}</span>
+				<input id="CustomerEmail" class="input-login{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" name="customer[email]" type="email" placeholder="Email" />
+				<input id="CustomerPassword" class="input-login{% if form.errors contains 'password' %} error{% endif %}" name="customer[password]" type="password" placeholder="Password" />
+				<a href="#" class="forgot_password">{{ ss.sign_in_forgot }}</a>
+				<input type="submit" value="Sign In" class="button-login">
+				<span class="wholesale_login">{{ ss.sign_in_wholesale }}<a href="https://wholesale.nomz.com/login">  Click here.</a></span>
+			{% endform %}
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>{{ ss.sign_up_overlay_title }}</h1>
+				<p>{{ ss.sign_up_overlay_subtitle}}</p>
+				<button class="ghost" id="signIn" >Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>{{ ss.sign_in_overlay_title }}</h1>
+				<p>{{ ss.sign_in_overlay_subtitle}}</p>
+				<button class="ghost" id="signUp" >Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="recover_password_container">
+	<div id="RecoverPasswordForm" class="hide">
+	
+		<h2>{{ 'customer.recover_password.title' | t }}</h2>
+		<p>{{ 'customer.recover_password.subtext' | t }}</p>
+	
+		<div class="form-vertical">
+			{% form 'recover_customer_password' %}
+	
+				{{ form.errors | default_errors }}
+	
+				{% if form.posted_successfully? %}
+					<span class="hide reset-password-success"></span>
+				{% endif %}
+	
+				<input type="email" value="" name="email" id="RecoverEmail" class="input-login" autocorrect="off" autocapitalize="off" placeholder="Email">
+	
+				<p>
+					<input type="submit" class="btn btn-recover" value="{{ 'customer.recover_password.submit' | t }}">
+				</p>
+				<button type="button" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</button>
+			{% endform %}
+		</div>
+	</div>
+</div>
+{% schema %}
+	{
+		"name": "Animated Login Template",
+		"settings": [
+			{
+				"type": "text",
+				"id": "sign_in_title",
+				"label": "Sign in title",
+				"default": "Sign in"
+			},
+			{
+				"type": "text",
+				"id": "sign_in_subtitle",
+				"label": "Sign in subtitle",
+				"default": "or use your email for registration"
+			},
+			{
+				"type": "text",
+				"id": "sign_in_forgot",
+				"label": "Forgot password text",
+				"default": "Forgot your password?"
+			},
+			{
+				"type": "text",
+				"id": "sign_in_wholesale",
+				"label": "Wholesale redirect text",
+				"default": "Looking to login to the wholesale portal?"
+			},
+			{
+				"type": "text",
+				"id": "sign_in_overlay_title",
+				"label": "Sign in title(right overlay)",
+				"default": "Hello, Friend!"
+			},
+			{
+				"type": "text",
+				"id": "sign_in_overlay_subtitle",
+				"label": "Sign in subtitle(right overlay)",
+				"default": "Enter your personal details and start your journey with us to access your subscription login and nomz rewards points"
+			},
+			{
+				"type": "text",
+				"id": "sign_up_title",
+				"label": "Sign up title",
+				"default": "Create Account"
+			},
+			{
+				"type": "text",
+				"id": "sign_up_subtitle",
+				"label": "Sign up subtitle",
+				"default": "or use your account"
+			},
+			{
+				"type": "text",
+				"id": "sign_up_overlay_title",
+				"label": "Sign up title(left overlay)",
+				"default": "Welcome Back!"
+			},
+			{
+				"type": "text",
+				"id": "sign_up_overlay_subtitle",
+				"label": "Sign up subtitle(left overlay)",
+				"default": "Please login with your personal info"
+			}
+		]
+	}
+{% endschema %}
+
+{% javascript %}
+
+const signUpButton = document.querySelector('#signUp');
+const signInButton = document.querySelector('#signIn');
+const container = document.querySelector('#container');
+console.log(signUpButton);
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+const forgotPasswordLink = document.querySelector('.forgot_password');
+const containerLogin = document.querySelector('.container-login');
+const containerRecover = document.querySelector('#RecoverPasswordForm');
+const recoverCancel = document.querySelector('#HideRecoverPasswordLink');
+const containerRecover2 = document.querySelector('.recover_password_container');
+const signInContainer = document.querySelector('.sign-in-container');
+forgotPasswordLink.addEventListener('click', () => {
+  containerLogin.classList.add("hide");
+  containerRecover.classList.remove("hide");
+  containerRecover2.classList.remove("hide");
+});
+recoverCancel.addEventListener('click', () => {
+  containerLogin.classList.remove("hide");
+  containerRecover2.classList.add("hide");
+});
+
+const customerLoginForm = document.querySelector('#customer_login');
+const customerSignupForm = document.querySelector('#create_customer');
+customerLoginForm.classList.add("form-login");
+customerLoginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
+customerSignupForm.classList.add("form-login");
+customerSignupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
+
+
+
+{% endjavascript %}

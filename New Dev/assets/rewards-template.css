@@ -1,0 +1,308 @@
+.hero_container, .refer_container {
+  box-sizing: border-box;
+  font-family: 'Gotham Rounded Medium', verdana;
+}
+.hero_container { 
+  margin-top: -2rem;
+}
+
+.earn_container {
+  padding: 0 0 8rem;
+}
+
+.info_container {
+  max-width: 86%;
+  margin: 3rem auto;
+  padding: 2rem 0 0;
+}
+.redeem_container {
+  padding: 8rem 0;
+}
+.img_wrap {
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('https://cdn.shopify.com/s/files/1/0857/4434/files/Screen_Shot_2022-02-28_at_10.40.32_PM.png?v=1646106050');
+  background-position: bottom 30% right 50%;
+  padding: 2.8rem 0 16rem;
+}
+.text_wrap, .earn_text_wrap, .redeem_text_wrap {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto;
+  color: #4F4F4F;
+}
+.redeem_text_wrap{
+  padding-top: 0;
+}
+.sub_info_head,.entry_head{
+  font-size:1.8rem;
+}
+.rewards_head{
+  font-weight: bold;
+  font-size: 6.5rem;
+  line-height: 87px;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 16px;
+}
+.rewards_btn{
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1.9px;
+  color: #4f4f4f;
+  width: 235px;
+  height: 56px;
+  background: #fff;
+  border: 1px solid #4f4f4f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+  border-radius: 0.2em;
+  z-index: 1;
+  position: relative;
+}
+.rewards_btn:hover{
+  color: white;
+}
+.rewards_btn::before {
+  background:#202020;
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+}
+
+.rewards_btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.rewards_text{
+  margin-bottom: 4rem;
+    font-size: 1.8rem;
+}
+.rewards_account{
+  display: inline;
+}
+.rewards_login_alt{
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.refer_info_head{
+  font-size: 4.8rem;
+    color: white;
+    line-height: 1.2;
+  margin-bottom:18px;
+}
+.refer_text_wrap{ 
+  padding-top: 56px;
+  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 55%;
+  margin: 0 auto;
+  color: #fff;
+}
+.refer_info_text {
+  font-size: 1.92rem;
+    color: white;
+}
+.refer_btn { 
+  color: #4f4f4f;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1.9px;
+  width: 235px;
+  height: 56px;
+  background: #fff;
+  border: 1px solid #202020;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  border-radius: 0.2em;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.refer_btn:hover{ 
+  color: #fff;
+}
+.refer_btn::before {
+  background:#202020;
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.refer_btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.refer_container { 
+  background: #F1BB5A;
+  padding: 3.4rem 0 2rem;
+}
+.info_head, .earn_head, .redeem_head{
+  text-align: center;
+  margin-top: 2rem;
+  color: #4f4f4f;
+  font-size: 4rem;
+  font-weight: bold;
+}
+.redeem_head {
+  margin-top: 0;
+}
+.info_col{
+  padding: 3rem 3rem;
+  text-align: center;
+}
+
+.rewards_logo_wrap{
+  margin: 0 auto;
+}
+
+.rewards_logo {
+  background-size: cover;
+  width:8rem;
+  height:8rem;
+  margin: 0 auto 2rem;
+  display: block!important;
+}
+
+.rewards_grid {
+  width: 80%;
+  margin: 0 auto;
+}
+.rewards_grid .row {
+  justify-content: space-between;
+}
+.rewards_grid_entry { 
+  background: #f7f7f7;
+  padding: 3.5rem 0 3rem;
+  border: 1px solid transparent;
+  width: 24%;
+  transition: all 0.2s ease-in-out;
+}
+
+.entry_content { 
+  text-align: center;
+}
+.entry_head { 
+  margin-bottom: 0.2rem;
+}
+.entry_icon {
+  background-size: cover;
+  width:6rem;
+  height:6rem;
+  margin: 0 auto 2rem;
+  display: block!important;
+}
+
+.redeem_content {
+  width: 80%;
+    margin: 0 auto 4rem;
+    text-align: center;
+    padding: 6.8rem 8rem;
+    border: 1px solid transparent;
+    transition: all .2s;
+    background: #f7f7f7;
+}
+.redeem_icon { 
+  background-image: url('https://cdn.sweettooth.io/v1/images/rewards/fixed-amount.svg?color=%236DABE4&theme=light');
+  background-size: cover;
+    width: 11rem;
+    height: 11rem;
+    display: block!important;
+    margin: 0 auto 4rem;
+}
+.redeem_text { 
+  font-size: 2rem;
+}
+.bottom_info_head {
+  font-size: 3rem;    
+  color: #4f4f4f;
+  margin-bottom: 3rem;
+}
+.bottom_container {
+  background: none;
+}
+
+.join_img{
+  background-size: cover;
+  margin: 0 auto 2rem;
+  background-position: top 0px left 50%;
+  height: 32rem;
+  display: block!important;
+}
+.join_content-wrap{
+  width: 80%;
+  margin: 0 auto 2rem;
+  text-align: center;
+  padding: 4rem 5rem;
+  background: #f7f7f7;
+}
+.join_num{
+  font-size: 3.6rem;
+}
+.entry_points{
+  font-size:15px;
+}
+@media screen and (max-width: 768px) {
+  .rewards_head {
+    font-size: 5.2rem;
+  }
+  .info_col:not(:last-of-type) {
+    padding-bottom: 0;
+  }
+  .join_content-wrap {
+    width: 90%;
+    padding: 5.2rem 1.8rem;
+  }
+  .join_text {
+    margin-bottom: 4.2rem;
+  }
+  .info_head, .earn_head, .redeem_head{
+    font-size: 3.8rem;
+  }
+  .rewards_grid_entry {
+    width: 47.5%;
+    padding: 5.2rem 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .refer_text_wrap {
+    max-width: 90%;
+  }
+  .refer_info_head {
+    font-size: 3.8rem;
+    margin-bottom: 1.8rem;
+  }
+  .redeem_content{
+    width: 90%;
+    padding: 5.2rem 1.8rem;
+  }
+}

@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="{{ 'instagram-slider.css' | asset_url }}" >
+
+
+{% assign ss = section.settings %}
+{% assign bs = block.settings %}
+
+
+<header class="slider-header">
+	<a href="https://www.instagram.com/nomz/">@nomz</a>
+</header>
+<main class="slider-content">
+	<div class="items" id="items">
+      {% for block in section.blocks %}
+		<div class="item {% unless block.settings.img %} hide {% endunless %}" style="background-image: url({{ block.settings.img | img_url: 'x1200'}}) ;"> 
+			<a href="{{ block.settings.img_url }}" class="item-link"></a>
+		</div>
+      {% endfor %}
+  </div>
+</main>
+
+{% schema %}
+	{
+		"name": "Insta Feed Widget",
+		"blocks": [
+		  	{
+              "type": "mega_menu",
+              "name": "Mega Menu",
+              "settings": [
+				{
+                  "type": "image_picker",
+                  "id": "img",
+                  "label": "Image"
+				},
+				{
+                  "type": "url",
+                  "id": "img_url",
+                  "label": "Image url to instagram post"
+				}
+				]
+			}
+		],
+		"presets": [
+      {
+        "name": "Instagram feed widget",
+        "category": "Image"
+      }
+    ]
+	}
+{% endschema %}
+
+{% javascript %} 
+
+const slider = document.querySelector('#items');
+console.log(slider);
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+  console.log("erreerre", scrollLeft)
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;  // stop the fn from running
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+  slider.scrollLeft = scrollLeft - walk;
+  
+  console.log('sdsd', scrollLeft)
+  console.log(slider.scrollLeft)
+});
+
+
+//   touchEvents
+
+slider.addEventListener('touchstart', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('touchend', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('touchcancel', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('touchmove', (e) => {
+  if (!isDown) return;  // stop the fn from running
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+  slider.scrollLeft = scrollLeft - walk;
+});
+{% endjavascript %}

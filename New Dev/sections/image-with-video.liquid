@@ -1,0 +1,355 @@
+{%- if section.blocks.size > 0 -%}
+  {{ 'component-image-with-video.css' | asset_url | stylesheet_tag }}
+<style>
+  .section-{{section.id}} .bc-image-with-video__heading{
+    {%if section.settings.heading_color != blank%}
+    color: {{section.settings.heading_color}};
+    {% endif %}
+    {%if section.settings.heading_font_size != blank%}
+    font-size: {{section.settings.heading_font_size}};
+    {% endif %}
+    {%if section.settings.heading_font_style != blank%}
+    font-style: {{section.settings.heading_font_style}};
+    {% endif %}
+    {%if section.settings.heading_font_weight != blank%}
+    font-weight: {{section.settings.heading_font_weight}};
+    {% endif %}
+    {%if section.settings.heading_line_height != blank%}
+    line-height: {{section.settings.heading_line_height}};
+    {% endif %}
+  }
+  .section-{{section.id}} .bc-image-with-video__text{
+    {%if section.settings.text_color != blank%}
+    color: {{section.settings.text_color}};
+    {% endif %}
+    {%if section.settings.text_font_size != blank%}
+    font-size: {{section.settings.text_font_size}};
+    {% endif %}
+    {%if section.settings.text_font_style != blank%}
+    font-style: {{section.settings.text_font_style}};
+    {% endif %}
+    {%if section.settings.text_font_weight != blank%}
+    font-weight: {{section.settings.text_font_weight}};
+    {% endif %}
+    {%if section.settings.text_line_height != blank%}
+    line-height: {{section.settings.text_line_height}};
+    {% endif %}
+  }
+</style>
+  <image-with-video class="bc-image-with-video bc-{{settings.section_style}}-bt section-{{section.id}}">
+      {%- if section.blocks.size > 0 -%}
+          <div class="bc-image-with-video__content {{ section.settings.align }} {{ section.settings.position }} {{ section.settings.v_position }}">
+              {%- if section.settings.heading != blank -%}
+                  <h2 class="bc-image-with-video__heading">
+                      {{ section.settings.heading }}
+                  </h2>
+              {%- endif -%}
+              {%- if section.settings.text != blank -%}
+                  <div class="bc-image-with-video__text">
+                      {{ section.settings.text }}
+                  </div>
+              {%- endif -%}
+              {%- if section.settings.btn != blank -%}
+                  <a class="button button--primary" {%- if section.settings.url != blank -%}href="{{ section.settings.url }}"{%- endif -%}>
+                      {{ section.settings.btn }}
+                  </a>
+              {%- endif -%}
+          </div>
+      {%- for block in section.blocks -%}
+          {%- case block.type -%}
+  
+              {%- when 'image'  -%}
+                  <div class="bc-item bc-image-with-video__wrapper-image">
+                      <div class="{% unless block.settings.image != blank %}placeholder{% else %}media{% endunless %}"
+                          {% if block.settings.image != blank %}style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"{% endif %}>
+                          {%- if block.settings.image != blank -%}
+                              <img srcset="{%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+                                  {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+                                  {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | img_url: '535x' }} 535w,{%- endif -%}
+                                  {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                                  {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%}
+                                  {%- if block.settings.image.width >= 1070 -%}{{ block.settings.image | img_url: '1070x' }} 1070w{%- endif -%}"
+                                  src="{{ block.settings.image | img_url: '533x' }}"
+                                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                                  alt="{{ block.settings.image.alt | escape }}"
+                                  loading="lazy"
+                                  width="{{ block.settings.image.width }}"
+                                  height="{{ block.settings.image.height }}"
+                                  class="bc-image-with-video__image"
+                              />
+                              {%- else -%}
+                                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          {%- endif -%}
+                      </div>
+                  </div>
+  
+              {%- when 'video' -%}
+                  <div class="bc-item bc-image-with-video__wrapper-video  {% unless block.settings.video != blank %}placeholder{% endunless %}">
+                      {%- if block.settings.yv_video != blank -%}
+                        {%- if block.settings.yv_video.type == 'vimeo' -%}
+                          <iframe src="https://player.vimeo.com/video/{{ block.settings.yv_video.id }}?autoplay=1&loop=1&autopause=0" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
+                        {%- else -%}
+                          <iframe src="https://www.youtube.com/embed/{{ block.settings.yv_video.id }}?autoplay=1&mute=1&loop=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+                        {%- endif -%}
+                      {%- elsif block.settings.video != blank -%}
+                        <video class="bc-image-with-video__video" autoplay loop muted defaultmuted playsinline> 
+                            <source src="{{ block.settings.video }}" type="video/mp4"> 
+                            <source src="{{ block.settings.video }}" type="video/ogg">
+                        </video>
+                      {%- else -%}
+                          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                  </div>
+  
+          {%- endcase -%}
+      {%- endfor -%}
+      {%- endif -%}
+  </image-with-video>
+  {%- endif -%}
+   
+  {% schema %}
+  {
+    "name": "Image With Video",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "transeasonal pieces"
+      },
+      {
+        "type": "select",
+        "id": "heading_color",        
+        "label": "Heading Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_size",
+        "label": "Heading Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_weight",
+        "label": "Heading Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "heading_line_height",
+        "label": "Heading line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_style",
+        "label": "Heading Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>clothes that make U feel like U</p>"
+      },
+      {
+        "type": "select",
+        "id": "text_color",        
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "text_font_size",
+        "label": "Text Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "text_font_weight",
+        "label": "Text Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "text_line_height",
+        "label": "Text line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "text_font_style",
+        "label": "Text Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "text",
+        "id": "btn",
+        "label": "Button Label",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Button Link"
+      },
+      {
+        "type": "select",
+        "id": "align",
+        "label": "Content Align",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "select",
+        "id": "position",
+        "label": "Content Horizontal Position",
+        "options": [
+          {
+            "label": "Left",
+            "value": "bc_left"
+          },
+          {
+            "label": "Center",
+            "value": "bc_center"
+          },
+          {
+            "label": "Right",
+            "value": "bc_right"
+          }
+        ],
+        "default": "bc_left"
+      },
+      {
+        "type": "select",
+        "id": "v_position",
+        "label": "Content Vertical Position",
+        "options": [
+          {
+            "label": "Top",
+            "value": "bc_v_left"
+          },
+          {
+            "label": "Center",
+            "value": "bc_v_center"
+          },
+          {
+            "label": "Bottom",
+            "value": "bc_v_right"
+          }
+        ],
+        "default": "bc_v_left"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "video_url",
+            "id": "yv_video",
+            "label": "Youtub or Vimeo video",
+            "accept": [
+              "youtube",
+              "vimeo"
+            ]
+          },
+          {
+            "type": "url",
+            "id": "video",
+            "label": "HTML video"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "image with video",
+        "blocks": [
+          {
+            "type": "image"
+          },
+          {
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}

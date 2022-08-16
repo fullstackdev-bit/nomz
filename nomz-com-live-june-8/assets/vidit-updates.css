@@ -1,0 +1,280 @@
+@media screen and (max-width: 590px){
+  .main-container {
+      max-width: 100%;
+  }
+  .inside-content{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .inside-content-text, .grant-text-wrap {
+    padding: 0 0.5rem;
+  }
+  .grant-image-wrap {
+    width: 95%;
+    padding: 48%;
+    margin: 0px auto;
+  }
+  .ingredient-block {
+	padding-left: 0px;
+  }
+  .index-section {
+	padding:0;
+  }
+  .product-ingredients.grid{
+    margin-left: 0;
+  }
+  .product-ingredients-section .product-ingredients .ingredient-item .content-area{
+    left:0;
+  }
+}
+.newsletter-section {
+    padding: 17px 0 !important;
+  }
+@media only screen and (min-width: 590px) {
+.page-content, .shopify-policy__container {  /*to change the signup option section on the "bundles" page under "shop" */
+    padding-bottom: 0px !important;
+  }
+.collection_toggle_button {
+    padding: 0.5rem !important;   /*to change the options bar after clicking on the "shop now" button on the home screen*/
+  }
+.template-page .page-content {
+    padding-bottom: 0px;           /* to change the bottom padding of the nomz grant page*/
+}
+}
+
+
+
+
+///////////////////
+
+.borderbox {
+     width: 100%;
+     position: relative;
+     min-height: 1px;
+     padding-left: 15px;
+     padding-right: 15px;
+}
+//here ( img { })    ////////////////////////////////////
+.boximgauthor {
+     vertical-align: middle;
+     border-style: none;
+}
+.boxflex {
+     width: auto;
+     margin-left: -15px;
+     margin-right: -15px;
+}
+.boxflex {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     box-sizing: border-box;
+}
+.authorbox {
+     margin-top: 25px;
+     padding: 8px 0 8px 0;
+     background: transparent;
+     box-shadow: none;
+     width: 100%;
+     border: 0;
+     display: flex;
+     position: relative;
+     min-width: 0;
+     word-wrap: break-word;
+     font-size: .875rem;
+     margin-top: 30px;
+     background: #ffffff;
+     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+     margin-bottom: 30px;
+     border-radius: 6px;
+     flex-direction: column;
+}
+ .boxflex {
+     width: auto;
+   	 margin-top: 3rem;
+     text-align: left;
+     margin-left: -15px;
+     margin-right: -15px;
+}
+ .boxflex {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     box-sizing: border-box;
+}
+ .borderbox {
+     width: 100%;
+     position: relative;
+     min-height: 1px;
+     padding-left: 15px;
+     padding-right: 15px;
+}
+ @media (min-width: 600px) .box1-3 {
+     flex-grow: 0;
+     max-width: 16.66667%;
+     flex-basis: 16.66667%;
+}
+ .borderbox {
+     margin: 0;
+     box-sizing: border-box;
+}
+ .authorbox {
+     color: rgba(0, 0, 0, 0.87);
+     width: 100%;
+     border: 0;
+     display: flex;
+     position: relative;
+     min-width: 0;
+     word-wrap: break-word;
+     font-size: .875rem;
+     margin-top: 30px;
+     background: #fff;
+     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+     margin-bottom: 30px;
+     border-radius: 6px;
+     flex-direction: column;
+}
+ .borderbox {
+     margin: 0;
+     box-sizing: border-box;
+}
+ .box1-3 {
+     flex-grow: 0;
+     max-width: 26.66667%;
+     flex-basis: 26.66667%;
+}
+ .boximgauthor {
+     margin-top: 0;
+     padding: 0;
+     overflow: hidden;
+     max-width: 125px;
+     max-height: 125px;
+     box-shadow: 0 14px 37px -12px rgba(0, 0, 0, 0.6), 0 4px 20px 0px rgba(0, 0, 0, 0.15), 0 6px 10px -6px rgba(0, 0, 0, 0.4);
+     border-radius: 50%;
+     margin-top: 20%;
+     margin-bottom: 10px;
+     margin-left: 10px;
+}
+ .authorbox {
+     color: rgba(0, 0, 0, 0.87);
+     width: 100%;
+     border: 0;
+     display: flex;
+     position: relative;
+     min-width: 0;
+     word-wrap: break-word;
+     font-size: .875rem;
+     margin-top: 30px;
+     background: #fff;
+     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+     margin-bottom: 30px;
+     border-radius: 6px;
+     flex-direction: column;
+}
+ .boximgauthor.boximgauthor img, .boximgauthor.jss728 img {
+     width: 100%;
+     height: auto;
+}
+ .borderbox {
+     width: 100%;
+     position: relative;
+     min-height: 1px;
+     padding-left: 15px;
+     padding-right: 15px;
+}
+/**@media (min-width: 600)*/
+ .box1-6 {
+     flex-grow: 0;
+     max-width: 66.66667%;
+     flex-basis: 66.66667%;
+}
+ .hinfbox, .hinfbox a {
+     color: #3C4858;
+     margin-top: .625rem;
+     min-height: auto;
+     font-weight: 700;
+     font-family: "Gotham Rounded Book,sans-serif", serif;
+     margin-bottom: 0.75rem;
+     text-decoration: none;
+     left: -20
+}
+
+//here    //////////////////////////////////////////////////////
+/* .body, input, textarea, button, select, p */
+.box1-6 {
+    text-align: center;
+}
+ .borderbox {
+     color: #999;
+     font-size: 1rem;
+}
+
+h4.hinfbox {
+  font-size: 1.1rem;
+}
+
+.text-link {
+    text-align: left;
+    color: #4f4f4f;
+    text-decoration: none;
+    background: transparent;
+}
+
+
+/////////////////////////////////////////
+
+/* Author Profile Blurb 
+
+<h1>Meet Our Expert</h1>
+<h3 class="hinfbox">This article features advice from our Science Team</h3>
+<div class="borderbox">
+      <div class="boxflex">
+         <div class="borderbox box1-3">
+            <div class="boximgauthor"><img src="https://images.ctfassets.net/uuc5ok478nyh/46pBOPw2DxrYw7ixUOCw3B/f83c9a1e752d5d3035eb6ba91efce6fa/WhoWeAre-Mastaneh.jpg?w=540&h=540&q=90&fm=webp" alt="..."></div>
+         </div>
+         <div class="  box1-6 box1-6">
+           <h4 class="">{{ article.author }}   {{articleauthor.name}}</h4>
+            <p>Dr. Mastaneh Sharafi has a PhD in Nutritional Sciences and is a Registered Dietitian. She received her training from Penn State University and University of Connecticut where she researched dietary patterns, chemosensory perception and community nutrition. Her dietetic work is focused on promoting healthy eating habits by translating the science of nutrition into practical information for the public.</p>
+           	<a target="_blank" href="">LinkedIn</a>
+         </div>
+      </div>
+   </div>
+      {% endif %}
+    </header>
+
+*/
+/////////////////////////////////////////////
+
+
+.text-link {
+  display: block; 
+  text-align: left; 
+}
+
+.boximgauthor {
+    margin-top: 0%;
+}
+
+.box1-6 a{
+  display:inline-block;
+}
+
+.box1-6 a:after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0;
+  background: #4f4f4f;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.box1-6 a:hover:after {
+  width: 100%;
+}
+
+
+
+/////////////////////////////////////////////
+

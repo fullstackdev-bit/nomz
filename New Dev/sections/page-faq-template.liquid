@@ -1,0 +1,185 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ 'faq-template.css' | asset_url }}" >
+
+{% assign numLeftBlocks = 0 %}
+{% assign numRightBlocks = 0 %}
+{% for block in section.blocks %}
+    {% if block.type == 'col_left' %}
+        {% assign numLeftBlocks = numLeftBlocks | plus: 1 %}
+    {% else %}
+        {% assign numRightBlocks = numRightBlocks | plus: 1 %} 
+    {% endif %}
+{% endfor %}
+
+
+<section class="{% if section.settings.page_title_enable %}accordion-container-faq {% else %}accordion-container_no-title{% endif %}">
+    <div class="accordion-faq">
+        {%- if section.settings.page_title_enable %}
+        <div class="accordion-header-faq">
+            <h3 class="accordion-title-faq">Frequently Asked Questions</h3>
+        </div>
+        {% endif %}
+        <div class="row">
+                <div class="accordion-column-faq">
+                    <div class="accordion-item-category-faq">
+                        <h4 class="category-header-faq">{{ section.settings.col_left_title }}</h4>
+                        <button class="btn-wrap-faq2">
+                            <span class="expand-all-btn">Expand all</span>
+                            <span class="collapse-all-btn dis-none">Collapse all</span>
+                        </button>
+                    </div>
+                    {%- for block in section.blocks -%}
+                        {% if block.type == 'col_left' %}
+                            <div class="accordion-item-faq">
+                                <div class="accordion-item-inner-faq">
+                                    <header class="accordion-item-header-faq">
+                                        <button class="accordion-item-button-faq">
+                                            <ion-icon name="add-outline"></ion-icon>
+                                            <ion-icon name="remove-outline"></ion-icon>
+                                        </button>
+                                        <h3 class="accordion-item-question-faq">
+                                            {{ block.settings.col_left_question }}
+                                        </h3>
+                                    </header>
+                                    <div class="accordion-item-body-faq">
+                                        <p class="accordion-item-description-faq">
+                                            {{ block.settings.col_left_answer}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <!-- <div class="btn-wrap-faq" {% unless numRightBlocks > 3 %}style="display:none"{% endunless %}>
+                        <p class="expand-btn">View more</p>
+                        <p class="close-btn">View less</p>
+                    </div> -->
+                </div>
+                <div class="accordion-column-faq">
+                    <div class="accordion-item-category-faq">
+                        <h4 class="category-header-faq">{{ section.settings.col_right_title }}</h4>
+                        <button class="btn-wrap-faq2">
+                            <span class="expand-all-btn">Expand all</span>
+                            <span class="collapse-all-btn dis-none">Collapse all</span>
+                        </button>
+                    </div>
+                    {%- for block in section.blocks -%}
+                        {% if block.type == 'col_right' %}
+                            <div class="accordion-item-faq">
+                                <div class="accordion-item-inner-faq">
+                                    <header class="accordion-item-header-faq">
+                                        <button class="accordion-item-button-faq">
+                                            <ion-icon name="add-outline"></ion-icon>
+                                            <ion-icon name="remove-outline"></ion-icon>
+                                        </button>
+                                        <h3 class="accordion-item-question-faq">
+                                            {{ block.settings.col_right_question }}
+                                        </h3>
+                                    </header>
+                                    <div class="accordion-item-body-faq">
+                                        <p class="accordion-item-description-faq">
+                                            {{ block.settings.col_right_answer}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <!-- <div class="btn-wrap-faq" {% unless numRightBlocks > 3 %}style="display:none"{% endunless %}>
+                        <p class="expand-btn">View more</p>
+                        <p class="close-btn">View less</p>
+                    </div> -->
+                </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Faq row",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "page_title_enable",
+        "label": "Show page title"
+      },
+      {
+        "type": "text",
+        "id": "col_left_title",
+        "label": "Category title for left column"
+      },
+      {
+        "type": "text",
+        "id": "col_right_title",
+        "label": "Category title for right column"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "col_left",
+        "name": "Left Column",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "col_left_question",
+            "label": "Question for left column"
+          },
+          {
+            "type": "html",
+            "id": "col_left_answer",
+            "label": "Answer for left column question"
+          }
+        ]
+      },
+      {
+        "type": "col_right",
+        "name": "Right Column",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "col_right_question",
+            "label": "Question for right column"
+          },
+          {
+            "type": "html",
+            "id": "col_right_answer",
+            "label": "Answer for right column question"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "faq row",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+{% javascript %}
+const accordionItems = document.querySelectorAll('.accordion-item-inner-faq');
+accordionItems.forEach(element => {
+  element.addEventListener('click', () => {
+    element.classList.toggle('active-faq');
+
+    if(element.classList.contains('active-faq')){
+      element.style.background = null;
+    }else {
+      element.style.background = 'white';
+    }
+    element.parentElement.parentElement.style.maxHeight = '200rem';
+  });
+});
+
+const accordionColumns = document.querySelectorAll('.accordion-column-faq');
+accordionColumns.forEach(element => {
+  element.firstElementChild.lastElementChild.addEventListener('click', (btn) => {
+    element.classList.toggle('active-faq-all');
+    element.firstElementChild.lastElementChild.firstElementChild.classList.toggle('dis-none');
+    element.firstElementChild.lastElementChild.lastElementChild.classList.toggle('dis-none');
+  });
+});
+                                               
+{% endjavascript %}

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="page-width">  
+  <div class="rte">
+    <div class="klaviyo-form-LwMQPE"></div>
+    <div class="klaviyo-form-KrL4dA"></div>
+      {{ page.content }}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter section",
+  "tag": "section"
+}
+{% endschema %}

@@ -1,0 +1,124 @@
+{{ 'main-instagram.css' | asset_url | stylesheet_tag }}
+<div class="bc-instagram">
+    {%- if section.settings.sub_title != blank or section.settings.title != blank -%}
+    <div class="bc-instagram__header">
+        {%- if section.settings.sub_title != blank -%}
+            <h6 class="bc-instagram__header-sub-title">
+                {{ section.settings.sub_title }}
+            </h6>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+            <h2 class="bc-instagram__header-title bc-instagram__header-title-{{ section.id }}">
+                {%- if section.settings.url != blank -%}
+                    <a href="{{ section.settings.url }}">
+                    {%- endif -%}
+                        {{ section.settings.title }}
+                    {%- if section.settings.url != blank -%}
+                    </a>
+                {%- endif -%}
+            </h2>
+            {%- render 'style', sufix: '.bc-instagram__header-title', id: section.id, style: section.settings -%}
+        {%- endif -%}
+    </div>
+    {%- endif -%}
+    <script src="//foursixty.com/media/scripts/fs.embed.v2.5.js" data-feed-id="437-swimwear" data-open-links-in-same-page="false" data-theme="showcase_v2_5" data-page-size="12" async></script>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_title",
+      "default": "CLICK ON AN IMAGE TO SHOP",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "SHOP OUR INSTA",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "text",
+      "id": "weight",
+      "label": "Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "size",
+      "label": "Font Size"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "select",
+      "id": "m_color",
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "text",
+      "id": "m_weight",
+      "label": "Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "m_size",
+      "label": "Font Size"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram"
+    }
+  ]
+}
+{% endschema %}

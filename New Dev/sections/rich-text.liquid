@@ -1,0 +1,625 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'section-rich-text.css' | asset_url }}" >
+
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="rich-text py-{{section.settings.bgc}} py-{{section.settings.br}} py-{{section.settings.sxmg}} py-{{section.settings.symg}}">
+  <div class="page-width page-{{section.settings.pw}} py-{{section.settings.pxpd}} py-{{section.settings.pypd}}">
+    <div class="rich-text__blocks">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            <h2 class="h2 py-{{block.settings.tc}} py-{{block.settings.fs}}">{{ block.settings.heading }}</h2>
+          {%- when 'text' -%}
+            <div class="rich-text__text rte py-{{block.settings.tc}} py-{{block.settings.fs}}">{{ block.settings.text }}</div>
+          {%- when 'button' -%}
+            <a {% if block.settings.button_link == blank %}aria-disabled="true"{% else %}href="{{ block.settings.button_link }}"{% endif %} class="button">
+              {{ block.settings.button_label }}
+            </a>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.rich-text.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom Styles"
+    },
+    {
+      "type": "select",
+      "id": "bgc",
+      "label": "Background Color",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "bg-c-un"
+        },
+        {
+          "label": "None",
+          "value": "bg-c-none"
+        },        
+        {
+          "label": "Dark",
+          "value": "bg-c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "bg-c-average"
+        },
+        {
+          "label": "Light",
+          "value": "bg-c-light"
+        }
+      ],
+      "default": "bg-c-un"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [        
+        {
+          "label": "None",
+          "value": "c-none"
+        },        
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-dark"
+    },
+    {
+      "type": "select",
+      "id": "pw",
+      "label": "Container (Width)",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "width-un"
+        },
+        {
+          "label": "Large",
+          "value": "width-l"
+        },
+        {
+          "label": "Medium",
+          "value": "width-m"
+        },
+        {
+          "label": "Small",
+          "value": "width-s"
+        }
+      ],
+      "default": "width-un"
+    },
+    {
+      "type": "select",
+      "id": "sxmg",
+      "label": "Section Margin Horizontal",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "mg-x-un"
+        },
+        {
+          "label": "None",
+          "value": "mg-x-n"
+        },
+        {
+          "label": "XL",
+          "value": "mg-x-xl"
+        },
+        {
+          "label": "L",
+          "value": "mg-x-l"
+        },
+        {
+          "label": "M",
+          "value": "mg-x-m"
+        },
+        {
+          "label": "S",
+          "value": "mg-x-s"
+        },
+        {
+          "label": "XS",
+          "value": "mg-x-xs"
+        }
+      ],
+      "default": "mg-x-un"
+    },
+    {
+      "type": "select",
+      "id": "symg",
+      "label": "Section Margin Vertical",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "mg-y-un"
+        },
+        {
+          "label": "None",
+          "value": "mg-y-n"
+        },
+        {
+          "label": "XL",
+          "value": "mg-y-xl"
+        },
+        {
+          "label": "L",
+          "value": "mg-y-l"
+        },
+        {
+          "label": "M",
+          "value": "mg-y-m"
+        },
+        {
+          "label": "S",
+          "value": "mg-y-s"
+        },
+        {
+          "label": "XS",
+          "value": "mg-y-xs"
+        }
+      ],
+      "default": "mg-y-un"
+    },
+    {
+      "type": "select",
+      "id": "pxpd",
+      "label": "Container Padding Horizontal",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-x-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-x-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-x-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-x-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-x-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-x-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-x-xs"
+        }
+      ],
+      "default": "pd-x-un"
+    },
+    {
+      "type": "select",
+      "id": "pypd",
+      "label": "Container Padding Vertical",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-y-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-y-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-y-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-y-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-y-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-y-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-y-xs"
+        }
+      ],
+      "default": "pd-y-un"
+    },
+    {
+      "type": "select",
+      "id": "br",
+      "label": "Border",
+      "options": [
+        {
+          "label": "None",
+          "value": "br-none"
+        },
+        {
+          "label": "Horizontal and Vertical",
+          "value": "br"
+        },
+        {
+          "label": "Horizontal",
+          "value": "br-x"
+        },
+        {
+          "label": "Vertical",
+          "value": "br-y"
+        }
+      ],
+      "default": "br-y"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.rich-text.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Talk about your brand",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styles"
+        },
+        {
+          "type": "select",
+          "id": "fs",
+          "label": "Font Size",
+          "options": [
+            {
+              "label": "Unset",
+              "value": "fs-un"
+            },
+            {
+              "label": "X Large",
+              "value": "fs-xl"
+            },
+            {
+              "label": "Large",
+              "value": "fs-l"
+            },
+            {
+              "label": "Medium",
+              "value": "fs-m"
+            },
+            {
+              "label": "X Small",
+              "value": "fs-xs"
+            },
+            {
+              "label": "Small",
+              "value": "fs-s"
+            }
+          ],
+          "default": "fs-un"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.rich-text.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styles"
+        },
+        {
+          "type": "select",
+          "id": "fs",
+          "label": "Font Size",
+          "options": [
+            {
+              "label": "Unset",
+              "value": "fs-un"
+            },
+            {
+              "label": "X Large",
+              "value": "fs-xl"
+            },
+            {
+              "label": "Large",
+              "value": "fs-l"
+            },
+            {
+              "label": "Medium",
+              "value": "fs-m"
+            },
+            {
+              "label": "X Small",
+              "value": "fs-xs"
+            },
+            {
+              "label": "Small",
+              "value": "fs-s"
+            }
+          ],
+          "default": "fs-un"
+        },
+        {
+          "type": "select",
+          "id": "tc",
+          "label": "Text Color",
+          "options": [
+            {
+              "label": "Unset",
+              "value": "c-un"
+            },
+            {
+              "label": "None",
+              "value": "c-none"
+            },        
+            {
+              "label": "Dark",
+              "value": "c-dark"
+            },
+            {
+              "label": "Average",
+              "value": "c-average"
+            },
+            {
+              "label": "Light",
+              "value": "c-light"
+            }
+          ],
+          "default": "c-un"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.rich-text.blocks.button.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "t:sections.rich-text.blocks.button.settings.button_label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Settings"
+        },
+        {
+          "type": "select",
+          "id": "bg",
+          "label": "Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "border",
+          "label": "border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Font Size"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "width",
+          "label": "Width"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Settings"
+        },
+        {
+          "type": "select",
+          "id": "m_bg",
+          "label": "Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "m_border",
+          "label": "border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "m_color",
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "text",
+          "id": "m_size",
+          "label": "Font Size"
+        },
+        {
+          "type": "text",
+          "id": "m_weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "m_width",
+          "label": "Width"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.rich-text.presets.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

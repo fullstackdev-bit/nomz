@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+
+
+{% if page.title == "Return Policy" %}
+  <style>
+    .main-content {
+      min-height: 510px!important;
+    }
+  </style>
+{% endif %}
+
+<div class="page-width page-content py-width-l py-mg-y-l py-pd-x-m">
+
+	<div class="grid">
+    <div class="medium-up--three-quarters medium-up--push-one-eighth">
+
+      <header class="section-header">
+        <h1 class="section-header__title">{{ page.title }}</h1>
+      </header>
+
+      <div class="rte rte--nomargin">
+        {{ page.content }}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.page.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "page",
+      "id": "page",
+      "label": "t:sections.page.settings.page.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.page.presets.name"
+    }
+  ]
+}
+{% endschema %}

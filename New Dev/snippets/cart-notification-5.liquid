@@ -1,0 +1,157 @@
+{% assign ss = section.settings %}
+
+<section class="side-cart flex f-j-end loading" data-cart-mount data-side-cart rv-class-loading="data.cart.loading" 
+data-class-change='
+    [
+        {
+            "target": ".side-cart",
+            "class": "shown",
+            "method": "remove",
+            "on": "click",
+            "onlyThisElem": true,
+            "preventDefault": true
+        }
+    ]
+' data-lock-scroll='
+  [
+      {
+          "target": "[data-side-cart-items]",
+          "method": "unlockScroll",
+          "on": "click",
+          "onlyThisElem": true,
+          "preventDefault": true
+      }
+  ] 
+'>
+ 
+  <div rv-class-shown="data.errorMessage" class="error-popup">
+    
+    <div class="popup-inner">
+      
+      <p rv-html="data.errorMessage"></p>
+
+      <a href="#" rv-on-click="controller.clearError" class="btn btn--centered">Close</a>
+
+    </div>
+
+  </div>
+  
+  <div class="inner" data-loading-text="Updating...">
+    
+    <header class="cart-header">
+      <div class="flex f-j-end f-j-between">
+        <div></div>
+        <div class="cart-title flex f-a-center f-j-between">
+          <h3 class="h2">{{ ss.title }}</h3>
+          <a class="close" href="#"
+            data-class-change='
+                [
+                    {
+                        "target": ".side-cart",
+                        "class": "shown",
+                        "method": "remove",
+                        "on": "click",
+                        "preventDefault": true
+                    }
+                ] 
+            ' 
+            data-lock-scroll='
+              [
+                  {
+                      "target": "[data-side-cart-items]",
+                      "method": "unlockScroll",
+                      "on": "click",
+                      "preventDefault": true
+                  }
+              ]
+            '
+          onclick="theme.shipBar.update();">
+            {% include 'icon-remove' %}
+          </a>
+        </div>
+      </div>
+    </header>
+
+    {% if ss.shipping_threshold_enabled %}
+      {% assign threshold = ss.shipping_threshold | times: 100 %}
+      <div class="free-shipping-notice" rv-if="data.cart.item_count | gt 0" data-promotion="{{ss.shipping_promotion}}" data-unlocked="{{ ss.shipping_threshold_reached }}" data-threshold="{{ threshold }}">
+        
+      </div>
+    {% endif %}
+
+    <div class="main-items" rv-if="data.cart.item_count | gt 0">
+      <div class="main-items-scroll" data-side-cart-items>
+        {% include 'cart-item--rivets' %}
+
+        {% if ss.enable_upsell %}
+          <section class="upsell-items loading" rv-if="data.cart.hasUpsell" data-loading-text="Updating..." rv-class-loading="data.upsellLoading">
+            <h3 class="upsell-notice">{{ ss.upsell_title }}</h3>
+            <div class="flex f-wrap">
+              {% include 'cart-item-upsell--rivets' %}
+            </div>
+          </section>
+        {% endif %}
+
+        {% if ss.cart_notes_enable %}
+          <label for="CartSpecialInstructions" class="note-label">{{ ss.cart_notes_title }}</label>
+          <textarea name="note" class="note-textarea" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <p class="empty-cart" rv-unless="data.cart.item_count | gt 0">
+      {{ 'cart.general.empty' | t }}
+    </p>
+    
+    <footer rv-if="data.cart.item_count | gt 0">
+      
+      <div class="total-area">
+        <div class="flex f-a-center f-j-between">
+          <span class="total-price-label">{{ 'cart.general.subtotal' | t }}:</span>
+          <span class="money" rv-data-money='data.cart.total_price' rv-text='data.cart.total_price | money'></span>
+        </div>
+      </div>
+ 
+      <div class="button-container">
+        <a id="btn--checkout" href="/checkout" class="btn btn--centered">
+          <span>{{ 'cart.general.secure_checkout' | t }}</span>
+        </a>
+
+        {% if additional_checkout_buttons and ss.enable_additional_buttons %}
+          <div class="additional-checkout-buttons">
+           {{ content_for_additional_checkout_buttons }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if ss.checkout_notice != blank %}
+        <div class="notice text-center">
+          {{ ss.checkout_notice }}
+        </div>
+      {% endif %}
+
+    </footer>
+
+  </div>
+
+</section>
+
+
+<script type="application/json" data-shipping-threshold-options>
+  {
+    "enabled": {{  ss.shipping_threshold_enabled | json }},
+    "threshold": {{ ss.shipping_threshold | json }},
+    "under_single": {{ ss.shipping_threshold_under_single | json }},
+    "under_multiple": {{ ss.shipping_threshold_under_multiple | json }},
+    "reached": {{ ss.shipping_threshold_reached | json }}
+  }
+</script>
+
+<script type="application/json" data-upsell-options>
+  {
+    "limit": {{ ss.upsell_limit | json }},
+    "enabled": {{ ss.enable_upsell | json }}
+  }
+</script>
+

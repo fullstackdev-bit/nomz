@@ -1,0 +1,94 @@
+.ffc-background-image-text .ffc-background-image-text__image {
+    overflow: hidden;
+    background-size: cover;
+    background-position: top -65px right 0px;
+    opacity: 1;
+    height: 30vw;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    min-height: 500px;
+    max-height:650px;
+  background-repeat: no-repeat;
+}
+
+.ffc-background-image-text .ffc-background-image-text__image .content-area {
+  background: none;
+  box-shadow: none;
+}
+
+.ffc-background-image-text .page-width {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media screen only screen and (min-width: 590px) {
+  .ffc-background-image-text .page-width {
+    padding: 0 40px;
+  }
+}
+
+.ffc-background-image-text .ffc-background-image-text__image .content-area.content-area--left {
+    width: 520px;
+    padding: 64px 84px 40px 48px;
+}
+
+
+.ffc-background-image-text .ffc-background-image-text__image .content-area .h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: .75;
+    text-align: left;
+    margin: 0 0 32px;
+}
+
+.ffc-background-image-text .ffc-background-image-text__image .content-area .rte{
+    font-size: 16px;
+    line-height: 1.5;
+}
+@media screen and (max-width: 1220px) {
+  .ffc-background-image-text .ffc-background-image-text__image{
+    background-position: top -25px right 0px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ffc-background-image-text .ffc-background-image-text__image {
+      background-position: right 0px top -345px;
+    height: 24rem;
+    overflow: hidden;
+    background-size: cover;
+    opacity: 1;
+    background-repeat: no-repeat;
+    padding: 23% 0 100%;
+  }
+  .ffc-background-image-text .page-width {
+    padding: 0 14px;
+  }
+  .ffc-background-image-text .ffc-background-image-text__image .content-area.content-area--left {
+    margin: -5rem 0 0!important;
+    padding: 32px 2px 24px;
+    width: calc(100% - 14px);
+    text-align: center;
+  }	
+  .ffc-background-image-text .ffc-background-image-text__image .content-area .h3 {
+    font-size: 24px;
+    margin: 0 0 16px;
+    text-align: center; 
+  }
+  .ffc-background-image-text .ffc-background-image-text__image .content-area .rte p {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 596px) {
+  .ffc-background-image-text .ffc-background-image-text__image {
+    background-position: right 0px top -283px;    
+    padding: 25% 0 98%;
+  }
+}
+@media screen and (max-width: 516px) {
+  .ffc-background-image-text .ffc-background-image-text__image {
+    background-position: right 0px top -180px;   
+    padding: 30% 0 98%;
+  }
+}

@@ -1,0 +1,135 @@
+.ffc-logos {
+    position: relative;
+    padding: 75px 15px;
+    margin: 0 auto;
+}
+
+.ffc-logos .section-header {
+    max-width: 628px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-header .section-header__title {
+    position: relative;
+    font-size: 2.0666666667em;
+}
+
+.section-header__title {
+    margin-bottom: 0;
+}
+
+.ffc-logos .section-header .sec-text {
+    padding-top: 16px;
+    padding-bottom: 32px;
+}
+
+.ffc-logos .section-header .sec-text * {
+    font-size: 16px;
+}
+
+.rte p:last-child {
+    margin: 0;
+}
+
+.rte:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.logo-bar .logo-bar__item {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    -ms-flex: auto;
+    flex: auto;
+}
+
+
+.logo-bar__item {
+    -ms-flex: 0 1 110px;
+    flex: 0 1 110px;
+    vertical-align: middle;
+    margin: 0 20px 26.6666666667px;
+}
+
+.logo-bar .logo-bar__item .logo-bar__image {
+    padding: 0;
+    height: 100px;
+}
+
+.logo-bar .logo-bar__item .logo-bar__image {
+    height: 75px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    padding: 0 30px;
+}
+
+.logo-bar .logo-bar__item .logo-bar__image img {
+    display: block;
+    margin: 0 auto;
+ 	max-height: 100%;
+}
+
+@media screen and (min-width: 768px){
+  .ffc-logos {
+      padding-bottom: 0;
+  }
+  .section-header {
+    margin-bottom: 50px;
+  }
+  .logo-bar {
+    max-width: 700px;
+    margin-top: 2rem;
+  }
+  
+  .logo-bar__item {
+    -ms-flex: 0 1 132px;
+    flex: 0 1 132px;
+    margin: 0 26.6666666667px 40px;
+  }
+  
+  .logo-bar .logo-bar__item .logo-bar__image {
+    height: 130px;
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .logo-bar {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin: 0 auto -40px;
+  }
+  .logo-bar .logo-bar__item {
+    width: 50%;
+  }
+  .logo-bar .logo-bar__item .logo-bar__image {
+    height: 100px;
+    margin-bottom: 3rem;
+  }
+}

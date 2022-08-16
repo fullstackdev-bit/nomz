@@ -1,0 +1,79 @@
+{% unless settings.show_breadcrumbs %}
+
+{% unless template.name == 'index' or template.name == 'cart' %}
+  <div class="page-width display-none-mobile">
+    <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+      {% comment %}<a href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>{% endcomment %}
+
+      {% if template.name == 'product' %}
+
+        {% if collection %}
+          {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+          {% if collection.handle %}
+            {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+            {{ collection.title | link_to: url }}
+            <span class="divider" aria-hidden="true">/</span>
+          {% endif %}
+        {% endif %}
+        <span class="breadcrumb--truncate">{{ product.title }}</span>
+
+      {% elsif template.name == 'collection' and collection.handle %}
+
+        {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+
+        {% if current_tags %}
+
+          {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+          {{ collection.title | link_to: url }}
+
+          <span class="divider" aria-hidden="true">/</span>
+
+          {% for tag in current_tags %}
+            {% include 'filter-out-custom-tags' %}
+
+            <span>{{ tag }}</span>
+
+            {% unless forloop.last %}
+              <span>+</span>
+            {% endunless %}
+
+          {% endfor %}
+
+        {% else %}
+          <span>{{ collection.title }}</span>
+        {% endif %}
+
+      {% elsif template.name == 'blog' %}
+
+        {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+        {% if current_tags %}
+          {{ blog.title | link_to: blog.url }}
+          <span class="divider" aria-hidden="true">/</span>
+          <span>{{ current_tags | join: " + " }}</span>
+        {% else %}
+        <span>{{ blog.title }}</span>
+        {% endif %}
+
+      {% elsif template.name == 'article' %}
+
+        {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+        {{ blog.title | link_to: blog.url }}
+        <span class="divider" aria-hidden="true">/</span>
+        <span>{{ article.title }}</span>
+
+      {% elsif template.name == 'page' %}
+
+        {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+        <span>{{ page_title }}</span>
+
+      {% else %}
+
+        {% comment %}<span class="divider" aria-hidden="true">/</span>{% endcomment %}
+        <span>{{ page_title }}</span>
+
+      {% endif %}
+    </nav>
+  </div>
+{% endunless %}
+
+{% endunless%}

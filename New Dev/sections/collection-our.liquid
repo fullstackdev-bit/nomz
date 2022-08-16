@@ -1,0 +1,298 @@
+{%- if section.settings.title != blank or section.blocks.size > 0 -%}
+  {{ 'collection-our.css' | asset_url | stylesheet_tag }}
+  
+  <div class="collection-our bc-{{settings.section_style}}-bt">
+    <div class="page-width page-width-{{settings.section_style}}">
+      {%- if section.settings.title != blank -%}
+      <div class="collection-our-heading">
+        <h2 class="collection-our__title collection-our__title-{{ section.id }}">
+          {{ section.settings.title | escape }}
+        </h2>
+        {%- render 'style', sufix: '.collection-our__title', id: section.id, style: section.settings -%}
+      </div>
+      {%- endif -%}
+      <ul class="collection-our-list bc-scroll-hide">
+        {%- for block in section.blocks -%}
+        <li class="collection-our-list__item py-pd-y-s"
+          {% if block.settings.enable_anim %} data-aos="{{block.settings.anim}}"{% endif %}>
+          {%- if block.settings.button_link != blank -%}
+            <a href="{{ block.settings.button_link }}">
+              {%- endif -%}
+              {%- if block.settings.image != blank -%}
+              <div class="collection-our_image__wrap bc-{{settings.section_style}}-bt">
+                  {%- render 'resimg', image: block.settings.image -%}
+              </div>
+              {%- else -%}
+              {% assign n_index = forloop.index | modulo:6 | plus: 1 %}
+              <div class="collection-our_image__wrap bc-{{settings.section_style}}-bt py-bg-c-light">
+                  {{ 'collection-' | append: n_index  | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>                
+              {%- endif -%}              
+              {%- if block.settings.title != blank -%}
+              <h2 class="collection-our__name collection-our__name-{{ block.id }}">
+              {{ block.settings.title }}
+              </h2>
+              {%- render 'style', sufix: '.collection-our__name', id: block.id, style: block.settings -%}
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+              <div class="collection-our__text">{{ block.settings.text }}</div>
+              {%- endif -%}              
+              {%- if block.settings.button_link != blank -%}
+            </a>
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  {%- endif -%}
+  
+  {% schema %}
+  {
+    "name": "Colection Our",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "KNOWN FOR OUR",
+        "label": "t:sections.multicolumn.settings.title.label"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Settings"
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "size",
+        "label": "Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Settings"
+      },
+      {
+        "type": "select",
+        "id": "m_color",
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "m_weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "m_size",
+        "label": "Font Size"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "t:sections.multicolumn.blocks.column.name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "default": "Title",
+            "label": "Title"
+          },
+          {
+            "type": "header",
+            "content": "Desktop Settings"
+          },
+          {
+            "type": "select",
+            "id": "color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "text",
+            "id": "weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "size",
+            "label": "Font Size"
+          },
+          {
+            "type": "header",
+            "content": "Mobile Settings"
+          },
+          {
+            "type": "select",
+            "id": "m_color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "text",
+            "id": "m_weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "m_size",
+            "label": "Font Size"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>If you haven't felt our 437 fabric yet, you're in for a treat. We pride ourselves on creating luxe swimwear and apparel that uses the highest quality fabrics designed to flatter the body.</p>",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Animation"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_anim",
+            "label": "Enable Animation",
+            "default": false
+          },
+          {
+            "type": "select",
+            "id": "anim",
+            "label": "Animation Type",
+            "options": [
+            {
+              "value": "fade-up",
+              "label": "Fade In Up"
+            },
+            {
+              "value": "fade-down",
+              "label": "Fade In Down"
+            },
+            {
+              "value": "fade-right",
+              "label": "Fade In Right"
+            },
+            {
+              "value": "fade-left",
+              "label": "Fade In Left"
+            },
+            {
+              "value": "flip-up",
+              "label": "Flip In Up"
+            },
+            {
+              "value": "flip-down",
+              "label": "Flip In Down"
+            },
+            {
+              "value": "flip-left",
+              "label": "Flip In Left"
+            },
+            {
+              "value": "flip-right",
+              "label": "Flip In Right"
+            },
+            {
+              "value": "zoom-in",
+              "label": "Zoom In"
+            },
+            {
+              "value": "zoom-out",
+              "label": "Zoom Out"
+            }
+            ],
+            "default": "zoom-in"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Colection Our",
+        "blocks": [
+          {"type": "column"},
+          {"type": "column"},
+          {"type": "column"}
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
